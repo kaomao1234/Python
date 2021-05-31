@@ -12,6 +12,8 @@ def MainProcess():
     get_intexd_dialgflow = request.get_json(silent=True, force=True)
     # pprint.pprint(get_intexd_dialgflow)
     ans_from_user = get_intexd_dialgflow['originalDetectIntentRequest']['payload']['data']['message']['text']
+    pprint.pprint(get_intexd_dialgflow)
+    print(ans_from_user)
     return send_user(ans_from_user)
 
 
