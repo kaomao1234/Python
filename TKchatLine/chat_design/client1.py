@@ -18,8 +18,6 @@ def connect():
         except:
             break
 
-
-time.sleep(1)
 connect_serv = th.Thread(target=connect)
 connect_serv.start()
 print('server is connected.')
