@@ -27,7 +27,7 @@ def respon(connection, client_address):
 
 
 def connect(count: int, start: int):
-    # global client_address
+    global client_address
     while True:
         # pprint.pprint(allclient)
         if start < count:
@@ -40,7 +40,7 @@ def connect(count: int, start: int):
             chat_up = th.Thread(target=respon, args=(connection, client_address))
             connect_client.start()
             chat_up.start()
-        send_text = bytes(input(), 'utf-8')
+        send_text = bytes(f'Server >>> {input()}', 'utf-8')
         for i in list(allclient.keys()):
             i.sendall(send_text)
 
