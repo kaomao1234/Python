@@ -8,39 +8,6 @@ import pyautogui
 from ttkbootstrap import Style
 
 
-#
-# HOST = socket.gethostbyname(socket.gethostname())
-# PORT = 5000
-#
-# # จากข้อ 1 : สร้าง socket object
-# s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# s.connect((HOST, PORT))
-#
-#
-# def connect():
-#     while True:
-#         try:
-#             data = s.recv(1024)
-#             print(f'Main server {(HOST, PORT)} >>> {data.decode("utf-8")}')
-#         except:
-#             break
-#
-#
-# connect_serv = th.Thread(target=connect)
-# connect_serv.start()
-# print('server is connected.')
-# while True:
-#     msg = input()
-#     try:
-#         s.sendall(str.encode(msg))
-#         if msg == 'q':
-#             print(f'{s} is out')
-#             s.close()
-#             break
-#     except:
-#         print('Server has close.')
-#         time.sleep(3)
-#         break
 class ThreadClient(th.Thread):
     def __init__(self, fd_lst, chat_board):
         th.Thread.__init__(self)
@@ -57,45 +24,43 @@ class ThreadClient(th.Thread):
 
     def run(self):  # This method connect to server.
         while True:
-            get_msg = self.socket_obj.recv(1024).decode('utf-8')+'\n'
+            get_msg = self.socket_obj.recv(1024).decode('utf-8') + '\n'
             self.chat_board.configure(state=NORMAL)
             self.chat_board.insert('end', get_msg)
             self.chat_board.configure(state=DISABLED)
-            st_tag = '{}.0'.format(int(self.chat_board.index('end-1c').split('.')[0])-1)
+            st_tag = '{}.0'.format(int(self.chat_board.index('end-1c').split('.')[0]) - 1)
             ed_tag = f'{st_tag}+{len(get_msg)}c'
             self.chat_board.tag_add('red_tag', st_tag, ed_tag)
 
 
-class ChatGui(Style):
-    def __init__(self, theme, theme_file=None):
-        super(ChatGui, self).__init__(theme=theme, themes_file=theme_file)
-        self.root = self.master
-        self.root.geometry('656x486')
-        self.root.resizable(0, 0)
-        self.container = ttk.Frame(self.root)
+class ChatUi(ttk.Frame):
+    name_var = ''
+    def __init__(self, style):
+        self.root = style.master
+        super(ChatUi, self).__init__(master=self.root)
+        self.style = style
         self.name_chat = ttk.Label(
-            self.container, text='Name_Chat', style='Inverse.TLabel')
-        self.configure('msg.Outline.TButton', font=('Helvetica', 20))
-        self.send_btn = ttk.Button(self.container, text='Send', style='msg.Outline.TButton', command=self.send_chat)
-        self.scroll_chat = ttk.Scrollbar(self.container)
-        self.chat_space = ttk.Frame(self.container)
+            self, text=self.name_var, style='Inverse.TLabel',font=('consolas',20))
+        self.style.configure('msg.Outline.TButton', font=('Helvetica', 20))
+        self.send_btn = ttk.Button(self, text='Send', style='msg.Outline.TButton', command=self.send_chat)
+        self.scroll_chat = ttk.Scrollbar(self)
+        self.chat_space = ttk.Frame(self)
         self.chat_board = Text(
             self.chat_space, yscrollcommand=self.scroll_chat.set, font=('consolas', 15), wrap='word', state=DISABLED)
         self.scroll_chat.configure(command=self.chat_board.yview)
         self.chat_text = Text(
-            self.container, wrap='word', height=5, font=('consolas', 13))
-        self.tree_user = ttk.Treeview(self.container, columns=('User'), show='headings', selectmode='browse')
+            self, wrap='word', height=5, font=('consolas', 13))
+        self.tree_user = ttk.Treeview(self, columns=('User'), show='headings', selectmode='browse')
         self.tree_user.column('User', anchor='c')
         self.tree_user.heading('User', text='Friend')
-        self.chatclient = ThreadClient(self.tree_user, self.chat_board)
-        self.chatclient.start()
+        # self.chatclient = ThreadClient(self.tree_user, self.chat_board)
+        # self.chatclient.start()
         self.put_widget()
         self.fix_option()
 
     def put_widget(self):  # This method put widget in container.
-        self.container.pack(fill=BOTH, expand=1)
-        self.container.rowconfigure(1, weight=1)
-        self.container.columnconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
+        self.columnconfigure(0, weight=1)
         self.name_chat.grid(row=0, column=0, columnspan=2, sticky='ew')
         self.chat_space.grid(row=1, column=0, sticky='nsew')
         self.scroll_chat.grid(row=1, column=1, sticky='ns')
@@ -114,7 +79,7 @@ class ChatGui(Style):
         if msg != '\n':
             self.chat_board.configure(state=NORMAL)
             self.chat_board.insert('end', 'My name >> ' + msg)
-            self.chatclient.send_msg(msg)
+            # self.chatclient.send_msg(msg)
             self.chat_text.delete('1.0', 'end')
             self.chat_board.configure(state=DISABLED)
             self.chat_text.mark_set('insert', '1.0')
@@ -124,6 +89,42 @@ class ChatGui(Style):
         self.chat_board.place_configure(
             width=self.chat_space.winfo_width(), height=self.chat_space.winfo_height())
 
+    def pack(self):
+        self.root.geometry('656x486')
+        self.root.resizable(0, 0)
+        super(ChatUi, self).pack(fill=BOTH,expand=1)
+
+class Login(ttk.Frame):
+
+    def __init__(self, style):
+        self.root = style.master
+        super(Login, self).__init__(master=self.root)
+        self.style = style
+        self.style.configure('msg.Outline.TButton',font=('Helvetica', 20))
+        ttk.Label(self,text='Login',font=('consolas',20),anchor=CENTER).pack(fill=X,expand=1)
+        self.put_name = ttk.Entry(self)
+        self.put_name.pack(fill=X)
+        self.btn_test = ttk.Button(self, text='Submit', command=self.switch_frame , style='msg.Outline.TButton')
+        self.btn_test.pack()
+
+    def pack(self):
+        super(Login, self).pack()
+
+    def switch_frame(self):
+        ChatUi.name_var = self.put_name.get()
+        self.style.switch_frame(self, ChatUi)
+
+class RunApp(Style):
+    def __init__(self):
+        super(RunApp, self).__init__()
+        self.theme = 'flatly'
+        self.root = self.master
+        Login(self).pack()
+
+    def switch_frame(self, current_frame,n_frame):
+        current_frame.destroy()
+        n_frame(self).pack()
+
 
 if __name__ == '__main__':
-    ChatGui('flatly').root.mainloop()
+    RunApp().root.mainloop()

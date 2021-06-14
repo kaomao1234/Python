@@ -7,13 +7,14 @@ allclient = {}
 s_obj = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s_obj.bind((HOST, PORT))
 s_obj.listen()
-'#todo---------------------------------------------------------------------------------'
+'#---------------------------------------------------------------------------------'
 
 
 def respon(connection, client_address):
     while True:
         try:
             data = connection.recv(1024)
+
             byte_to_str = data.decode('utf-8')
             print(client_address, '>>>', byte_to_str, '\n')
             if byte_to_str == 'q':
