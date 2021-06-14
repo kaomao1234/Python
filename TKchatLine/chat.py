@@ -8,7 +8,7 @@ import pyautogui
 from ttkbootstrap import Style
 
 
-class ThreadClient(th.Thread):
+class ThreadClient(th.Thread):#! this class is send and get info to server.
     def __init__(self, fd_lst, chat_board):
         th.Thread.__init__(self)
         self.setDaemon(True)
@@ -19,10 +19,10 @@ class ThreadClient(th.Thread):
         self.socket_obj.connect((self.host, self.port))
         self.fd_lst = fd_lst
 
-    def send_msg(self, type_msg):  # This method send message to other client.
+    def send_msg(self, type_msg):  #todo this method is send text
         self.socket_obj.sendall(str.encode(type_msg))
 
-    def run(self):  # This method connect to server.
+    def run(self):  #todo this method is connect server.
         while True:
             get_msg = self.socket_obj.recv(1024).decode('utf-8') + '\n'
             self.chat_board.configure(state=NORMAL)
@@ -33,7 +33,7 @@ class ThreadClient(th.Thread):
             self.chat_board.tag_add('red_tag', st_tag, ed_tag)
 
 
-class ChatUi(ttk.Frame):
+class ChatUi(ttk.Frame):#! this class is Chate page
     name_var = ''
     def __init__(self, style):
         self.root = style.master
@@ -58,7 +58,7 @@ class ChatUi(ttk.Frame):
         self.put_widget()
         self.fix_option()
 
-    def put_widget(self):  # This method put widget in container.
+    def put_widget(self):  #todo this method is put widget in page
         self.rowconfigure(1, weight=1)
         self.columnconfigure(0, weight=1)
         self.name_chat.grid(row=0, column=0, columnspan=2, sticky='ew')
@@ -68,13 +68,13 @@ class ChatUi(ttk.Frame):
         self.chat_text.grid(row=2, column=0, columnspan=2)
         self.send_btn.grid(row=2, column=2, sticky='nsew')
 
-    def fix_option(self):  # This method is mapping between Key and function(Method).
+    def fix_option(self):  #todo this method is binding between widget and function
         self.root.bind('<Configure>', self.updatesize)
         self.chat_board.tag_configure('red_tag', foreground='red')
         self.root.protocol("WM_DELETE_WINDOW",
                            lambda: sys.exit())
 
-    def send_chat(self):  # This method insert message to Chat.
+    def send_chat(self):  #todo this method is send text to show chat board
         msg = self.chat_text.get('1.0', 'end')
         if msg != '\n':
             self.chat_board.configure(state=NORMAL)
@@ -85,7 +85,7 @@ class ChatUi(ttk.Frame):
             self.chat_text.mark_set('insert', '1.0')
         self.chat_text.focus()
 
-    def updatesize(self, e):  # This method fix geometry chat text.
+    def updatesize(self, e):  #todo this method is fix chat geometry
         self.chat_board.place_configure(
             width=self.chat_space.winfo_width(), height=self.chat_space.winfo_height())
 
@@ -94,7 +94,7 @@ class ChatUi(ttk.Frame):
         self.root.resizable(0, 0)
         super(ChatUi, self).pack(fill=BOTH,expand=1)
 
-class Login(ttk.Frame):
+class Login(ttk.Frame):#! this class is Login page
 
     def __init__(self, style):
         self.root = style.master
@@ -110,7 +110,7 @@ class Login(ttk.Frame):
     def pack(self):
         super(Login, self).pack()
 
-    def switch_frame(self):
+    def switch_frame(self):#todo this method is switch page
         ChatUi.name_var = self.put_name.get()
         self.style.switch_frame(self, ChatUi)
 
@@ -124,7 +124,7 @@ class RunApp(Style):
     def switch_frame(self, current_frame,n_frame):
         current_frame.destroy()
         n_frame(self).pack()
-
+        
 
 if __name__ == '__main__':
     RunApp().root.mainloop()
