@@ -20,7 +20,6 @@ def MainProcess():
 def require_ans(text):
     return json.dumps({"fulfillmentText": 'Nothing'}, indent=4)
 
-
 def send_user(ans_from_user):
     res = make_response(require_ans(ans_from_user))
     res.headers['Content-Type'] = 'application/json'
