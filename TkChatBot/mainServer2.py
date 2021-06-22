@@ -20,15 +20,17 @@ class SingleServer(th.Thread):
             mul_con = th.Thread(target=self.connect, args=[i])
             mul_con.start()
 
+    def update_name(self):
+        for k in list(self.all_connect.values()):
+            print(k)
+            k.sendall(bytes(str(list(self.all_connect.keys())),'utf-8'))
     def connect(self, i):
         while True:
             connection, client_address = self.sock_obj.accept()
-            self.all_connect.update({connection: client_address})
             mul_res = th.Thread(target=self.respon, args=(connection, client_address))
             mul_res.start()
             print(f'server has connect with {client_address}')
-            print(f'Client {i + 1}')
-            print(th.active_count())
+            print(f'Client {i + 1}')  
 
     def respon(self, connection, client_address):
         while True:
@@ -38,9 +40,7 @@ class SingleServer(th.Thread):
                 self.all_connect.update({self.name: connection})
                 print(client_address, '>>>', byte_to_str['text'], '\n')
             except:
-                print(f'{client_address} is exit.')
-                connection.close()
-                break
+                pass
 
 
 if __name__ == '__main__':

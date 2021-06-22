@@ -1,3 +1,4 @@
+import kivy
 from kivy import Config
 Config.set('graphics', 'width', '1200')
 Config.set('graphics', 'height', '600')
@@ -22,7 +23,6 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.dropdown import DropDown
 from kivy.core.text import markup
 import re
-import kivy
 # Window.size = (1200, 600)
 
 
