@@ -4,7 +4,6 @@ import threading as th
 from tkinter import *
 from tkinter import ttk
 import ast
-import json
 from ttkbootstrap import Style
 
 
@@ -144,7 +143,7 @@ class RunApp(Style):
         self.root = self.master
         Login(self).pack()
 
-    def switch_frame(self, current_frame, n_frame):
+    def switch_frame(self, current_frame:Frame, n_frame:Frame):
         current_frame.destroy()
         n_frame(self).pack()
 
