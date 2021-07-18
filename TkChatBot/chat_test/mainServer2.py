@@ -2,7 +2,6 @@ import socket
 import threading as th
 import ast
 
-
 class SingleServer(th.Thread):
     def __init__(self, num_cli: int):
         th.Thread.__init__(self)
@@ -28,13 +27,13 @@ class SingleServer(th.Thread):
     def connect(self, i: int):
         while True:
             connection, client_address = self.sock_obj.accept()
-            mul_res = th.Thread(target=self.respon, args=(
+            mul_res = th.Thread(target=self.rec_info, args=(
                 connection, client_address))
             mul_res.start()
             print(f'server has connect with {client_address}')
             print(f'Client {i + 1}')
 
-    def respon(self, connection, client_address):
+    def rec_info(self, connection, client_address):
         while True:
             data = connection.recv(1024)
             byte_to_str = ast.literal_eval(data.decode('utf-8'))
