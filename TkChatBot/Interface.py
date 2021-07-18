@@ -1,8 +1,8 @@
 from tkinter.constants import BOTH, CENTER, DISABLED, E, END, NONE, NORMAL
 from ttkbootstrap import Style
-from tkinter import BooleanVar, StringVar, ttk
-import threading as th
-
+from tkinter import * 
+from threading import *
+from tkinter import ttk
 
 class App(Style):
     def __init__(self, theme='darkly', themes_file=None, *args, **kwargs):
@@ -31,9 +31,9 @@ class LoginPage(ttk.Frame):
         self.switchVar = BooleanVar()
         self.nameApp = ttk.Label(
             master=self, text='TkChat', font=('Bauhaus 93', 28, 'normal'))
-        self.nameUser = ttk.Entry(master=self, width=30, style='danger.TEntry', font=(
+        self.nameUser = Entry(master=self, width=30, font=(
             'Bahnschrift Condensed', 13))
-        self.passUser = ttk.Entry(master=self, width=30, style='danger.TEntry', font=(
+        self.passUser = Entry(master=self, width=30, font=(
             'Bahnschrift Condensed', 13))
         self.loginBtn = ttk.Button(
             master=self, text='Login', state=DISABLED, style='Log.Outline.TButton', width=28, command=lambda: container.switchPage(LoginPage, ChatPage))
@@ -79,9 +79,21 @@ class LoginPage(ttk.Frame):
 class ChatPage(ttk.Frame):
     def __init__(self, master, container: App, root):
         super().__init__(master=master)
+        self.root = root
         self.container = container
-
-
+        self.tabUser = ttk.Treeview(self)
+        self.scrolChat = ttk.Scrollbar(self)
+        self.typingChat = Text(self)
+        self.talkerName = ttk.Label(self)
+        
+        
+        
+    def pack(self):
+        self.root.resizable(True,True)
+        self.root.geometry('380x590')
+        self.tabUser.grid(row=0,column=0)
+        super().pack() 
+        
 if __name__ == '__main__':
     Apprun = App()
     Apprun.root.mainloop()
