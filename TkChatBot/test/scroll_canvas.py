@@ -4,7 +4,7 @@ from tkinter.constants import BOTH, BOTTOM, LEFT, X
 from ttkbootstrap import Style
 def framewidth(event):
     cw = event.width
-    canvas.itemconfig(c_crew,width=event.width,height=event.height)
+    canvas.itemconfig(c_crew,width=event.width)
     # parent.geometry(f'{cw}x{event.height}')
     
 st = Style()

@@ -6,7 +6,7 @@ from tkinter import filedialog as fd
 from tkinter import font
 from tkinter import messagebox
 from tkinter import ttk
-
+from threading import Thread
 from ttkbootstrap import Style
 
 
@@ -80,7 +80,7 @@ class MyNotepad:
             label="Delete", command=lambda: self.TextType.event_generate("<Delete>"))
         self.call_option()
 
-    def stat_active(self, e):
+    def stat_active(self, e=None):
         pos_cursor = self.TextType.index(INSERT).split('.')
         self.WorkStat['text'] = 'Ln {},Col {}'.format(
             pos_cursor[0], int(pos_cursor[1]) + 1)
@@ -116,7 +116,7 @@ class MyNotepad:
     def file_menu_btn(self):
         file_obj = FileOption(self.TextType)
         self.OptionMenuBtn['File'][1].add_command(
-            label='New', accelerator='Ctrl+N', command=lambda: file_obj.new_note())
+            label='New', accelerator='Ctrl+N', command=file_obj.new_note)
         self.OptionMenuBtn['File'][1].add_command(
             label='Open...', accelerator='Ctrl+O', command=lambda: file_obj.save_read('r'))
         self.OptionMenuBtn['File'][1].add_command(
@@ -125,13 +125,10 @@ class MyNotepad:
             label='Save as', accelerator='Ctrl+Shift+S', command=lambda: file_obj.save_read('w+'))
         self.OptionMenuBtn['File'][1].add_separator()
         self.OptionMenuBtn['File'][1].add_command(
-            label='Exit', command=lambda: self.root.destroy())
+            label='Exit', command=self.root.destroy)
 
     def edit_menu_btn(self):
-        index = list(map(lambda s: re.sub(r'\D', '', s),
-                         self.WorkStat['text'].split(',')))
-        index = '{}.{}'.format(index[0], int(index[1]) - 1)
-        stamp_time = time.strftime('%H:%M %p %d/%m/%Y').replace('PM', '')
+
         edit_obj = EditOption(self.TextType, self.WorkStat)
         self.OptionMenuBtn['Edit'][1].add_command(label='Undo', accelerator='Ctrl+Z',
                                                   command=lambda: self.TextType.event_generate('<<Undo>>'))
@@ -155,7 +152,14 @@ class MyNotepad:
         self.OptionMenuBtn['Edit'][1].add_command(
             label='Select All', accelerator='Ctrl+A', command=lambda: self.TextType.tag_add("sel", "1.0", "end"))
         self.OptionMenuBtn['Edit'][1].add_command(
-            label='Time/Date', accelerator='F5', command=lambda: self.TextType.insert(index, stamp_time))
+            label='Time/Date', accelerator='F5', command=self.stamp_time)
+
+    def stamp_time(self):
+        stamp_time = time.strftime('%H:%M %p %d/%m/%Y').replace('PM', '')
+        index = '.'.join([i.strip(' ') for i in self.WorkStat['text'].translate(
+            {i: None for i in range(65, 123)}).split(',')])
+        self.TextType.insert(index, stamp_time)
+        self.stat_active()
 
     def format_menu_btn(self):
         wrap_sw = BooleanVar()
@@ -177,11 +181,10 @@ class MyNotepad:
             label='About', command=lambda: HelpOption(self.root))
 
     def call_option(self):
-        self.file_menu_btn()
-        self.edit_menu_btn()
-        self.format_menu_btn()
-        self.view_menu_btn()
-        self.help_menu_btn()
+        all_option = [self.file_menu_btn, self.edit_menu_btn,
+                      self.format_menu_btn, self.view_menu_btn, self.help_menu_btn]
+        for i in all_option:
+            Thread(target=i).start()
 
     @property
     def run(self):
@@ -544,10 +547,8 @@ class FormatOption(Toplevel):
             pass
 
     def setwidget(self):
-        self.setfont()
-        self.setstyle()
-        self.setsize()
-        self.setpretext()
+        for i in (self.setfont, self.setstyle, self.setsize, self.setpretext):
+            Thread(target=i).start()
         ttk.Button(self.btn_frame, text='Cancel', style='warning.TButton', command=lambda: self.destroy(
         ), width=10).pack(side=RIGHT, padx=70, pady=20)
         ttk.Button(self.btn_frame, text='OK', width=10, style='warning.TButton',
