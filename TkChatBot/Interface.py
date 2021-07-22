@@ -1,8 +1,7 @@
-from tkinter.constants import BOTH, CENTER, DISABLED, E, END, NONE, NORMAL
-from ttkbootstrap import Style
 from tkinter import *
-from threading import *
 from tkinter import ttk
+
+from ttkbootstrap import Style
 
 
 class App(Style):
@@ -42,7 +41,6 @@ class LoginPage(ttk.Frame):
             master=self, text='Login', state=DISABLED, width=26, command=self.switchPage, font=('Bahnschrift Condensed', 15, 'normal'), bg='#f7f7f7', fg='#292b2c')
         self.themechkBtn = ttk.Checkbutton(master=self, style='primary.Roundtoggle.Toolbutton',
                                            variable=self.switchVar, text='darkly', command=self.switchTheme)
-        print(self.getUsername)
 
     def switchPage(self):
         LoginPage.getUsername = self.nameUser.get()
@@ -54,7 +52,7 @@ class LoginPage(ttk.Frame):
         self.passUser.bind('<KeyRelease>', self.btnFocus)
 
     def switchTheme(self):  # todo สลับ theme
-        if self.switchVar.get() == True:
+        if self.switchVar.get():
             self.loginBtn.configure(fg='#f7f7f7', bg='#292b2c')
             self.container.theme_use(themename='flatly')
             self.themechkBtn.configure(text='flatly')
@@ -87,30 +85,43 @@ class LoginPage(ttk.Frame):
 
 
 class ChatPage(ttk.Frame):
+    # todo ความสูงที่เพิ่มได้สูงสุดของ textChat 9 ต่ำสุด 4
     def __init__(self, master, container: App, root):
         super().__init__(master=master)
         self.root = root
         self.container = container
         self.tabUser = ttk.Treeview(self)
-        self.textBox = Text(self,state='disabled')
-        self.scrolChat = ttk.Scrollbar(self, command=self.textBox.yview)
-        self.talkerName = ttk.Label(self)
-        self.textBox.configure(yscrollcommand=self.scrolChat.set)
+        self.textShow = Text(self, state='disabled', wrap='word')
+        self.textType = Text(self, wrap='word', height=4, font='consolas 13')
+        self.scrolChat_board = ttk.Scrollbar(self, command=self.textType.yview)
+        self.scrolMsg_board = ttk.Scrollbar(self, command=self.textType.yview)
+        self.talkerName = ttk.Label(
+            self, text='Group Test', font='consolas 20')
+        self.textShow.configure(yscrollcommand=self.scrolChat_board.set)
+        self.textType.configure(yscrollcommand=self.scrolMsg_board.set)
+        self.bind()
 
     def pack(self):
         self.bind()
         self.root.resizable(True, True)
         self.root.geometry('380x590')
-        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
         self.columnconfigure(1, weight=1)
         ttk.Label(self, text=LoginPage.getUsername).grid(row=0, column=0)
-        self.tabUser.grid(row=1, column=0)
-        self.textBox.grid(row=0,column=1,rowspan=2)
-        self.scrolChat.grid(row=0,column=2,rowspan=2,sticky='ns')
-        super().pack(expand=1,fill='both')
+        self.tabUser.grid(row=1, column=0, sticky='ns')
+        self.talkerName.grid(row=0, column=1)
+        self.textShow.grid(row=1, column=1, sticky='nesw')
+        self.textType.grid(row=2, column=1, columnspan=2)
+        self.scrolChat_board.grid(row=1, column=2, sticky='ns')
+        self.scrolMsg_board.grid(row=2, column=2, sticky='ns')
+        super().pack(expand=1, fill='both')
+
+    def expandAndshrink(self, e):
+        print(e.keysym)
 
     def bind(self):
         super().bind(sequence=None, func=None)
+        self.textType.bind('<Key>', self.expandAndshrink)
 
 
 if __name__ == '__main__':

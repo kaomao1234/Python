@@ -23,7 +23,7 @@ class MainServer(Thread):
             if self.recClient(con=connection, cli_add=client_address) == False:
                 print(f'{connection} has close.')
 
-    def recClient(self, con, cli_add):
+    def recClient(self, con:socket, cli_add):
         try:
             print('connection form', cli_add)
             while True:
@@ -35,13 +35,4 @@ class MainServer(Thread):
 
 
 if __name__ == '__main__':
-    # MainServer().start()
-    pass
-from tkinter import * 
-root = Tk() 
-frame = Frame(root)
-for i in range(0,20):
-    root.after(ms=1000,func=lambda : Button(frame,text=i).pack()) 
-frame.pack()
-frame.bind(sequence='<Focus>',func=lambda s : print(1))
-root.mainloop()
+    MainServer().start()
