@@ -1,33 +1,37 @@
 from threading import *
 from socket import *
+from tkinter import *
+from tkinter.ttk import Treeview
+import sys
 
 
 class ClientUser(Thread):
-    def __init__(self):
+    def __init__(self, Textbox: Text, ListUser: Treeview):
         super().__init__()
-        self.host, self.port = '192.168.1.11', 5000
+        self.host, self.port = '192.168.1.4', 5000
         self.sockObj = socket(AF_INET, SOCK_STREAM)
         self.sockObj.connect((self.host, self.port))
-        self.connect = Thread(target=self.connected)
-        self.connect.start()
+        self.boolTask = True
 
     def run(self):
         print('now client has connected server.')
-        while True:
-            m = input()
-            self.sockObj.sendall(str.encode(m))
-            if m.lower() == 'e':
-                print(self.sockObj, 'is out')
-                self.sockObj.close()
-                break
+        self.connected()
+
+    def sendMsg(self, m: str):
+        self.sockObj.sendall(str.encode(m))
+
+    def exitClient(self):
+        self.boolTask = False
+        self.join()
 
     def connected(self):
-        while True:
+        while self.boolTask:
             try:
-                recData = self.sockObj.recv(1024)
+                recData = self.sockObj.recv(1024).decode('utf-8')
                 print('Server send', recData)
             except:
                 print('Server has close.')
+                self.sockObj.close()
                 break
 
 

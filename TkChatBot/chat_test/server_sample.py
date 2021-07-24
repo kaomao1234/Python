@@ -2,7 +2,7 @@ import socket
 
 HOST = socket.gethostbyname(socket.gethostname())  # IP ของ server
 PORT = 5000  # port ที่จะใช้ในการติดต่อ
-
+print(HOST)
 # จากข้อ 1 : สร้าง socket object
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
