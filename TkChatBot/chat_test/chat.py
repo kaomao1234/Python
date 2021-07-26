@@ -26,13 +26,13 @@ class ThreadClient(th.Thread):  # ! this class is send and get info to server.
         while True:
             get_msg = self.socket_obj.recv(1024).decode('utf-8')
             print(get_msg)
-            # self.chat_board.configure(state=NORMAL)
-            # self.chat_board.insert('end', get_msg + '\n')
-            # self.chat_board.configure(state=DISABLED)
-            # st_tag = '{}.0'.format(
-            #     int(self.chat_board.index('end-1c').split('.')[0]) - 1)
-            # ed_tag = f'{st_tag}+{len(get_msg)+1}c'
-            # self.chat_board.tag_add('red_tag', st_tag, ed_tag)
+            self.chat_board.configure(state=NORMAL)
+            self.chat_board.insert('end', get_msg + '\n')
+            self.chat_board.configure(state=DISABLED)
+            st_tag = '{}.0'.format(
+                int(self.chat_board.index('end-1c').split('.')[0]) - 1)
+            ed_tag = f'{st_tag}+{len(get_msg)+1}c'
+            self.chat_board.tag_add('red_tag', st_tag, ed_tag)
 
 
 class ChatUi(ttk.Frame):  # ! this class is Chate page

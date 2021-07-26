@@ -56,14 +56,13 @@ def render_frame(A: float, B: float):
 
 def pprint(array: np.ndarray):
     """Pretty print the frame."""
-    print(array)
-    # print(*[" ".join(row) for row in array], sep="\n")
+    print(*[" ".join(row) for row in array], sep="\n")
 
 
 if __name__ == "__main__":
     pass
-    # while True:
-    #     A += theta_spacing
-    #     B += phi_spacing
-    #     print("\x1b[H")
-        # pprint(render_frame(A, B))
+    while True:
+        A += theta_spacing
+        B += phi_spacing
+        print("\x1b[H")
+        pprint(render_frame(A, B))

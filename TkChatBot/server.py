@@ -1,11 +1,12 @@
 from socket import *
 from threading import Thread
-
+import ast
 
 class MainServer(Thread):
     def __init__(self):
         super().__init__()
-        self.host, self.port = '192.168.1.4', 5000
+        self.host, self.port = gethostbyname(gethostname()), 5000
+        print()
         self.sockObj = socket(AF_INET, SOCK_STREAM)
         self.sockObj.bind((self.host, self.port))
         self.sockObj.listen()
@@ -27,18 +28,21 @@ class MainServer(Thread):
         try:
             print('connection form', cli_add)
             while True:
-                recData = con.recv(1024).decode('utf-8')
-                if 'name' in recData.split(':'):
-                    self.stackUser.update({recData.split(':')[1]: con})
-                print(self.stackUser)
-                # print("received:", recData)
+                recData = ast.literal_eval(con.recv(1024).decode('utf-8'))
+                print(recData)
+                if recData['name'] not in list(self.stackUser.keys()):
+                    self.stackUser.update({recData['name']: con})
+                elif 'text' in list(recData.keys()):
+                    self.distributeUser(recData) 
+                print("received:", recData)
         except:
             con.close()
             return False
 
-    def distributeUser(self):
-        for i, v in self.stackUser:
-            pass
+    def distributeUser(self,msg:dict):
+        for i, v in self.stackUser.items():
+           if i != msg['name']:
+               v.sendall(str.encode(msg['name']+'==>'+msg['text']))
 
 
 if __name__ == '__main__':

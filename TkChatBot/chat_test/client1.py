@@ -15,12 +15,14 @@ def connect():
         try:
             data = s.recv(1024)
             print('data is ', data)
+            print('true')
         except:
             break
 
 connect_serv = th.Thread(target=connect)
 connect_serv.start()
 print('server is connected.')
+s.sendall(str.encode('name:K1'))
 while True:
     msg = input()
     s.sendall(str.encode(msg))

@@ -102,14 +102,16 @@ class ChatPage(ttk.Frame):
         self.talkerName = ttk.Label(
             self, text='Group Test', font='consolas 20')
         self.backend = ClientUser
+        self.jsonUser=  {}
         self.textShow.configure(yscrollcommand=self.scrolChat_board.set)
         self.textType.configure(yscrollcommand=self.scrolMsg_board.set)
 
     def pack(self):
         self.bind()
         self.backend = self.backend(self.textShow, self.tabUser)
-        name = LoginPage.getUsername
-        self.backend.sendMsg(f'name:{name}')
+        name = LoginPage.getUsername 
+        self.jsonUser.update({'name':name})
+        self.backend.sendMsg(str(self.jsonUser))
         self.backend.start()
         self.root.resizable(True, True)
         self.root.geometry('380x590')
@@ -141,6 +143,8 @@ class ChatPage(ttk.Frame):
 
     def return_Event(self, e: Event):
         msgVar = f'{LoginPage.getUsername} ==>'+self.textType.get('1.0', 'end')
+        self.jsonUser.update({'text':self.textType.get('1.0', 'end')})
+        self.backend.sendMsg(str(self.jsonUser))
         self.textShow.configure(state='normal')
         self.textShow.insert('end', msgVar)
         self.textShow.configure(state='disabled')
@@ -151,13 +155,13 @@ class ChatPage(ttk.Frame):
 
     def bind(self):
         super().bind(sequence=None, func=None)
-        self.root.protocol("WM_DELETE_WINDOW",)
+        self.root.protocol("WM_DELETE_WINDOW",self.del_window)
         self.textType.bind('<BackSpace>', self.backspace_Event)
         self.textType.bind('<Shift-Return>', self.shift_enterEvent)
         self.textType.bind('<Return>', self.return_Event)
 
     def del_window(self):
-        self.backend.exitClient()
+        self.backend.sendMsg('0')
         self.root.destroy()
 
 
