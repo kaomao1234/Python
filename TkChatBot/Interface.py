@@ -92,8 +92,9 @@ class ChatPage(ttk.Frame):
         self.root = root
         self.container = container
         self.tabUser = ttk.Treeview(
-            self, selectmode='browse', show='headings', columns=('1'))
+            self, show='headings', columns=('1'))
         self.tabUser.heading('1', text='All user')
+        self.tabUser.column("1", anchor="center")
         self.textShow = Text(self, state='disabled', wrap='word', bg='white')
         self.textType = Text(self, wrap='word', height=4,
                              font='consolas 13', background='white')
@@ -111,6 +112,8 @@ class ChatPage(ttk.Frame):
         self.backend = self.backend(self.textShow, self.tabUser)
         name = LoginPage.getUsername 
         self.jsonUser.update({'name':name})
+        self.tabUser.tag_configure('red',foreground='red')
+        self.tabUser.insert('','end',values=name+'(me)',tags='red')
         self.backend.sendMsg(str(self.jsonUser))
         self.backend.start()
         self.root.resizable(True, True)
@@ -142,7 +145,7 @@ class ChatPage(ttk.Frame):
             self.textType.configure(height=height)
 
     def return_Event(self, e: Event):
-        msgVar = f'{LoginPage.getUsername} ==>'+self.textType.get('1.0', 'end')
+        msgVar = '{} ==> {}'.format(LoginPage.getUsername,self.textType.get('1.0', 'end'))
         self.jsonUser.update({'text':self.textType.get('1.0', 'end')})
         self.backend.sendMsg(str(self.jsonUser))
         self.textShow.configure(state='normal')

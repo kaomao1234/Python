@@ -2,6 +2,7 @@ from socket import *
 from threading import Thread
 import ast
 
+
 class MainServer(Thread):
     def __init__(self):
         super().__init__()
@@ -32,17 +33,24 @@ class MainServer(Thread):
                 print(recData)
                 if recData['name'] not in list(self.stackUser.keys()):
                     self.stackUser.update({recData['name']: con})
+                    self.distrubeName()
                 elif 'text' in list(recData.keys()):
-                    self.distributeUser(recData) 
+                    self.groupMsg(recData)
                 print("received:", recData)
         except:
             con.close()
             return False
 
-    def distributeUser(self,msg:dict):
+    def groupMsg(self, msg: dict):
         for i, v in self.stackUser.items():
-           if i != msg['name']:
-               v.sendall(str.encode(msg['name']+'==>'+msg['text']))
+            if i != msg['name']:
+                v.sendall(str.encode(msg['name']+' ==> '+msg['text']))
+
+    def distrubeName(self):
+        for i, v in self.stackUser.items():
+            for name, con in self.stackUser.items():
+                if i != name:
+                    v.sendall(bytes(str({'name':i}), 'utf-8'))
 
 
 if __name__ == '__main__':
