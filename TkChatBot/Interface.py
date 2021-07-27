@@ -94,8 +94,6 @@ class ChatPage(ttk.Frame):
         self.container = container
         self.tabUser = ttk.Treeview(
             self, show='headings', columns=('1'))
-        self.tabUser.heading('1', text='All user')
-        self.tabUser.column("1", anchor="center")
         self.textShow = Text(self, state='disabled', wrap='word', bg='white')
         self.textType = Text(self, wrap='word', height=4,
                              font='consolas 13', background='white')
@@ -108,20 +106,25 @@ class ChatPage(ttk.Frame):
         self.textShow.configure(yscrollcommand=self.scrolChat_board.set)
         self.textType.configure(yscrollcommand=self.scrolMsg_board.set)
 
-    def pack(self):
-        self.bind()
+    def extenFunc(self):
+        self.tabUser.heading('1', text='All user')
+        self.tabUser.column("1", anchor="center")
         self.tabUser.tag_configure('red', foreground='red')
-        self.backend = self.backend(self.textShow, self.tabUser)
         name = LoginPage.getUsername
         self.jsonUser.update({'name': name})
         self.tabUser.insert('', 'end', values=name + '(me)', tags='red')
         self.backend.sendMsg(str(self.jsonUser))
+
+    def pack(self):
+        self.bind()
+        self.backend = self.backend(self.textShow, self.tabUser)
+        self.extenFunc()
         self.backend.start()
         self.root.resizable(True, True)
         self.root.geometry('380x590')
         self.rowconfigure(1, weight=1)
         self.columnconfigure(1, weight=1)
-        ttk.Label(self, text=name).grid(row=0, column=0)
+        ttk.Label(self, text=self.jsonUser['name']).grid(row=0, column=0)
         self.tabUser.grid(row=1, column=0, sticky='ns', rowspan=2)
         self.talkerName.grid(row=0, column=1)
         self.textShow.grid(row=1, column=1, sticky='nesw')
@@ -145,7 +148,7 @@ class ChatPage(ttk.Frame):
 
     def return_Event(self, e: Event):
         msgVar = '{} ==> {}'.format(
-            LoginPage.getUsername, self.textType.get('1.0', 'end'))
+            self.jsonUser['name'], self.textType.get('1.0', 'end'))
         self.jsonUser.update({'text': self.textType.get('1.0', 'end')})
         self.backend.sendMsg(str(self.jsonUser))
         self.textShow.configure(state='normal')

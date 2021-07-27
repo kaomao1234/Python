@@ -30,10 +30,10 @@ class MainServer(Thread):
             print('connection form', cli_add)
             while True:
                 recData = ast.literal_eval(con.recv(1024).decode('utf-8'))
-                if recData['name'] not in list(self.stackUser.keys()):
+                if recData['name'] not in self.stackUser:
                     self.stackUser.update({recData['name']: con})
                     self.distrubeName()
-                elif 'text' in list(recData.keys()):
+                elif 'text' in recData:
                     self.groupMsg(recData)
                 print("received:", recData)
         except:
