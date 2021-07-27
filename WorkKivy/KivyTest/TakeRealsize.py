@@ -37,8 +37,8 @@ from kivy.graphics import Rectangle,Color
 class TouchWidget(Scatter):
     def __init__(self, **kwargs):
         super(TouchWidget, self).__init__(**kwargs)
-        self.P = Label(text='[size=30]This is Widget', markup=True) 
-        self.P.bind(size=self.on_size)
+        self.P = Label(text='[size=30]This is Widget', markup=True)
+        self.P.bind()
         self.on_size()
         self.add_widget(self.P)
         self.size_hint=[None,None]

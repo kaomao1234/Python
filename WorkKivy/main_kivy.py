@@ -51,7 +51,7 @@ class Main(Screen):
                             'center_x': .3, 'center_y': .3}, size_hint=(None, None), size=(101, 45))
         self.Sign_up = Button(text="Sign-up", font_size=15, background_color=self.tan1, pos_hint={
                               'center_x': .7, 'center_y': .3}, size_hint=(None, None), size=(101, 45))
-        self.Login.bind(on_press=self.check_login)
+        self.Login.bind()
         for i in [self.Top_text, self.user, self.password, self.I_user, self.I_password, self.Login, self.Sign_up]:
             self.add_widget(i)
 
@@ -98,7 +98,7 @@ class SignUpPage(Screen):
                              pos_hint={'center_x': .7, 'center_y': .15}, size=(101, 45))
         self.add_widget(self.back)
         self.add_widget(self.submit)
-        self.submit.bind(on_press=self.on_text)
+        self.submit.bind()
 
     def on_text(self, event):
         check = any(
@@ -125,8 +125,8 @@ class MyScreenManager(ScreenManager):
         self.sign_up_page = SignUpPage()
         self.add_widget(self.login)
         self.add_widget(self.sign_up_page)
-        self.login.Sign_up.bind(on_press=self.change_screen)
-        self.sign_up_page.back.bind(on_press=self.change_screen)
+        self.login.Sign_up.bind()
+        self.sign_up_page.back.bind()
 
     def change_screen(self, event):
         if event.text == 'Sign-up':

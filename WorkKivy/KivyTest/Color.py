@@ -11,7 +11,8 @@ def on_color(instance, value):
     print("HSV = ", str(instance.hsv))
     print("HEX = ", str(instance.hex_color))
 
-clr_picker.bind(color=on_color)
+
+clr_picker.bind()
 class OnApp(App):
     def build(self):
         return parent

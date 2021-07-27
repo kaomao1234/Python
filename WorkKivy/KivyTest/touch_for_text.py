@@ -17,7 +17,7 @@ class Emu(Screen):
         self.wid_dict = {}
         self.plus = Button(text='+', font_size=20,
                            size_hint=(None, None))
-        self.plus.bind(on_press=self.addwidget)
+        self.plus.bind()
         self.Pos_text = Label(markup=True)
         self.add_widget(self.Pos_text)
         self.add_widget(self.plus)
@@ -33,12 +33,12 @@ class Emu(Screen):
         no = len(self.wid_dict.keys())
         label = Label(text=f'[color=#ff3030ff]This is Move widget{no}[/color]',markup = True)
         self.wid_dict[move] = label
-        move.bind(pos=self.callback_pos)
+        move.bind()
         # move.bind(on_touch=self.on_touch_move)
         self.widdict = {}
         self.plus = Button(text='+', font_size=20,
                            size_hint=(None, None))
-        self.plus.bind(on_press=self.addwidget)
+        self.plus.bind()
         self.add_widget(self.plus)
 
     def callback_pos(self, instance, value):
@@ -49,7 +49,7 @@ class Emu(Screen):
         no = len(self.widdict.keys())
         label = Label(text=f'This is Move widget{no}')
         self.widdict[move] = label
-        move.bind(pos=self.callback_pos)
+        move.bind()
         move.add_widget(label)
         self.add_widget(move)
 

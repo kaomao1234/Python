@@ -1,1 +1,1 @@
-        move.bind(pos=self.callback_pos)
+        move.bind()

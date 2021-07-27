@@ -18,24 +18,23 @@ class ClientUser(Thread):
     def run(self):
         print('now client has connected server.')
         while True:
-            # try:
-                recData = self.sockObj.recv(1024).decode('utf-8')
-                try:
-                    self.treeeUser.insert(
-                            '', 'end', values=ast.literal_eval(recData)['name'])
-                except:
-                    self.textShow.configure(state=NORMAL)
-                    self.textShow.insert('end', recData)
-                    self.textShow.configure(state=DISABLED)
-                    st_tag = '{}.0'.format(
-                        int(self.textShow.index('end').split('.')[0]) - 2)
-                    ed_tag = f'{st_tag}+{len(recData)}c'
-                    print(st_tag, ed_tag, self.textShow.tag_add(
-                        'red_tag', st_tag, ed_tag))
-                print('Server send', recData)
-            # except:
-            #     self.sockObj.close()
-            #     break
+            recData = self.sockObj.recv(1024).decode('utf-8')
+            recData = ast.literal_eval(recData)
+            print(recData)
+            if 'text' not in recData:
+                self.treeeUser.insert(
+                    '', 'end', values=recData['name'])
+            else:
+                insMsg = recData['name']+' ==> '+recData['text']
+                self.textShow.configure(state=NORMAL)
+                self.textShow.insert('end', insMsg)
+                self.textShow.configure(state=DISABLED)
+                st_tag = '{}.0'.format(
+                    int(self.textShow.index('end').split('.')[0]) - 2)
+                ed_tag = f'{st_tag}+{len(insMsg)}c'
+                st_tag, ed_tag, self.textShow.tag_add(
+                    'red_tag', st_tag, ed_tag)
+            print('Server send', recData)
 
     def sendMsg(self, m: str):
         if m == '0':

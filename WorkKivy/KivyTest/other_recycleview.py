@@ -57,7 +57,7 @@ class RVItem(RecycleDataViewBehavior, BoxLayout):
         image_button.text = '+'
         image_button.size_hint = None, None
         image_button.size = "30sp", "30sp"
-        image_button.bind(on_press=self.add_button_pressed)
+        image_button.bind()
         self.add_widget(image_button)
 
 

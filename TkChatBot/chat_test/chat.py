@@ -82,7 +82,7 @@ class ChatUi(ttk.Frame):  # ! this class is Chate page
         self.send_msgbtn.grid(row=2, column=2, sticky='nsew')
 
     def fix_option(self):  # todo this method is binding between widget and function
-        self.root.bind('<Configure>', self.updatesize)
+        self.root.bind()
         self.chat_board.tag_configure('red_tag', foreground='red')
         self.root.protocol("WM_DELETE_WINDOW",
                            lambda: sys.exit())

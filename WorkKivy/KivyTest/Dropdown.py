@@ -10,7 +10,7 @@ class DropWidget(DropDown):
         super(DropWidget, self).__init__(**kwargs)
         for i in range(1, 20):
             self.btn = Button(text=f'value{i}',size_hint=(None,None ),height=30)
-            self.btn.bind(on_release=lambda btn: self.select(btn.text))
+            self.btn.bind()
             self.add_widget(self.btn)
 
 
@@ -18,8 +18,8 @@ class Display(GridLayout):
     def __init__(self, **kw):
         super(Display, self).__init__(**kw)
         self.dropdown = DropWidget()
-        self.main_btn = Button(text ='Hello', size_hint =(None, None), pos =(350, 400)) 
-        self.main_btn.bind(on_release=self.dropdown.open)
+        self.main_btn = Button(text ='Hello', size_hint =(None, None), pos =(350, 400))
+        self.main_btn.bind()
         self.dropdown.bind(on_select = self.on_select)
         self.add_widget(self.main_btn)
     def on_select(self,instance,event):

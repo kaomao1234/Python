@@ -74,8 +74,8 @@ class ToolBox(GridLayout):
             text='+Button', font_size=14, height=44, size_hint_y=None)
         for i in [self.label_btn, self.TInput_btn, self.Button_btn]:
             self.tool_bar.add_widget(i)
-            i.bind(on_release=lambda e: self.tool_bar.select(e.text))
-        self.tool_drop.bind(on_release=self.tool_bar.open)
+            i.bind()
+        self.tool_drop.bind()
         self.add_widget(self.tool_drop)
 
 
@@ -93,7 +93,7 @@ class MainScreen(BoxLayout):
         self.add_widget(self.ToolBoxins)
         self.add_widget(self.Screen_ins)
         self.add_widget(self.Tab_WidgetProperty)
-        self.ToolBoxins.label_btn.bind(on_press=self.on_press)
+        self.ToolBoxins.label_btn.bind()
         self.Text = self.Tab_WidgetProperty.Pro_dict['Text']
         self.Fontsize = self.Tab_WidgetProperty.Pro_dict['Font_size']
         self.Position = self.Tab_WidgetProperty.Pro_dict['Pos(x,y)']
@@ -105,7 +105,7 @@ class MainScreen(BoxLayout):
             labelcreated = Label(
                 text=f'[size={self.Fontsize.text}]{self.Text.text}', markup=True)
             on_move.add_widget(labelcreated)
-            on_move.bind(pos=self.callback_pos)
+            on_move.bind()
             self.allwidget[on_move] = labelcreated
             self.Screen_ins.add_widget(on_move)
             self.Text.text = ''

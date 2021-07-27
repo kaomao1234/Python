@@ -30,7 +30,6 @@ class MainServer(Thread):
             print('connection form', cli_add)
             while True:
                 recData = ast.literal_eval(con.recv(1024).decode('utf-8'))
-                print(recData)
                 if recData['name'] not in list(self.stackUser.keys()):
                     self.stackUser.update({recData['name']: con})
                     self.distrubeName()
@@ -42,15 +41,15 @@ class MainServer(Thread):
             return False
 
     def groupMsg(self, msg: dict):
-        for i, v in self.stackUser.items():
-            if i != msg['name']:
-                v.sendall(str.encode(msg['name']+' ==> '+msg['text']))
+        for myName, myCon in self.stackUser.items():
+            if myName != msg['name']:
+                myCon.sendall(str.encode(str(msg)))
 
     def distrubeName(self):
-        for i, v in self.stackUser.items():
-            for name, con in self.stackUser.items():
-                if i != name:
-                    v.sendall(bytes(str({'name':i}), 'utf-8'))
+        for curName, v in self.stackUser.items():
+            for oth_name, con in self.stackUser.items():
+                if curName != oth_name:
+                    v.sendall(bytes(str({'name': oth_name}), 'utf-8'))
 
 
 if __name__ == '__main__':

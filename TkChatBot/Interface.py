@@ -6,7 +6,7 @@ from client import ClientUser
 
 
 class App(Style):
-    def __init__(self, theme='darkly', themes_file=None, *args, **kwargs):
+    def __init__(self, theme='cyborg', themes_file=None, *args, **kwargs):
         super().__init__(theme=theme, themes_file=themes_file, *args, **kwargs)
         self.root = self.master
         self.mainFrame = ttk.Frame(master=self.root)
@@ -35,13 +35,14 @@ class LoginPage(ttk.Frame):
         self.nameApp = ttk.Label(
             master=self, text='TkChat', font=('Bauhaus 93', 28, 'normal'))
         self.nameUser = Entry(master=self, width=30, font=(
-            'Bahnschrift Condensed', 13))
+            'Bahnschrift Condensed', 13), text='User1')
         self.passUser = Entry(master=self, width=30, font=(
-            'Bahnschrift Condensed', 13))
+            'Bahnschrift Condensed', 13), text='12345678')
         self.loginBtn = Button(
-            master=self, text='Login', state=DISABLED, width=26, command=self.switchPage, font=('Bahnschrift Condensed', 15, 'normal'), bg='#f7f7f7', fg='#292b2c')
+            master=self, text='Login', state=DISABLED, width=26, command=self.switchPage,
+            font=('Bahnschrift Condensed', 15, 'normal'), bg='#f7f7f7', fg='#292b2c')
         self.themechkBtn = ttk.Checkbutton(master=self, style='primary.Roundtoggle.Toolbutton',
-                                           variable=self.switchVar, text='darkly', command=self.switchTheme)
+                                           variable=self.switchVar, text='cyborg', command=self.switchTheme)
 
     def switchPage(self):
         LoginPage.getUsername = self.nameUser.get()
@@ -55,12 +56,12 @@ class LoginPage(ttk.Frame):
     def switchTheme(self):  # todo สลับ theme
         if self.switchVar.get():
             self.loginBtn.configure(fg='#f7f7f7', bg='#292b2c')
-            self.container.theme_use(themename='flatly')
-            self.themechkBtn.configure(text='flatly')
+            self.container.theme_use(themename='yeti')
+            self.themechkBtn.configure(text='yeti')
         else:
             self.loginBtn.configure(bg='#f7f7f7', fg='#292b2c')
-            self.container.theme_use(themename='darkly')
-            self.themechkBtn.configure(text='darkly')
+            self.container.theme_use(themename='cyborg')
+            self.themechkBtn.configure(text='cyborg')
 
     def pack(self):  # todo วางตำแหน่งของ widget
         super().pack(fill='y', expand=1)
@@ -103,17 +104,17 @@ class ChatPage(ttk.Frame):
         self.talkerName = ttk.Label(
             self, text='Group Test', font='consolas 20')
         self.backend = ClientUser
-        self.jsonUser=  {}
+        self.jsonUser = {'name': None, 'text': None}
         self.textShow.configure(yscrollcommand=self.scrolChat_board.set)
         self.textType.configure(yscrollcommand=self.scrolMsg_board.set)
 
     def pack(self):
         self.bind()
+        self.tabUser.tag_configure('red', foreground='red')
         self.backend = self.backend(self.textShow, self.tabUser)
-        name = LoginPage.getUsername 
-        self.jsonUser.update({'name':name})
-        self.tabUser.tag_configure('red',foreground='red')
-        self.tabUser.insert('','end',values=name+'(me)',tags='red')
+        name = LoginPage.getUsername
+        self.jsonUser.update({'name': name})
+        self.tabUser.insert('', 'end', values=name + '(me)', tags='red')
         self.backend.sendMsg(str(self.jsonUser))
         self.backend.start()
         self.root.resizable(True, True)
@@ -128,8 +129,6 @@ class ChatPage(ttk.Frame):
         self.scrolChat_board.grid(row=1, column=2, sticky='ns')
         self.scrolMsg_board.grid(row=2, column=2, sticky='ns')
         super().pack(expand=1, fill='both')
-        # self.textShow.insert('end','เดี่ยวมาาาาาา')
-        # self.textShow.configure(font=('cosolas',50))
 
     def backspace_Event(self, e: Event):
         height = self.textType['height']
@@ -145,8 +144,9 @@ class ChatPage(ttk.Frame):
             self.textType.configure(height=height)
 
     def return_Event(self, e: Event):
-        msgVar = '{} ==> {}'.format(LoginPage.getUsername,self.textType.get('1.0', 'end'))
-        self.jsonUser.update({'text':self.textType.get('1.0', 'end')})
+        msgVar = '{} ==> {}'.format(
+            LoginPage.getUsername, self.textType.get('1.0', 'end'))
+        self.jsonUser.update({'text': self.textType.get('1.0', 'end')})
         self.backend.sendMsg(str(self.jsonUser))
         self.textShow.configure(state='normal')
         self.textShow.insert('end', msgVar)
@@ -156,9 +156,9 @@ class ChatPage(ttk.Frame):
         self.textType.configure(height=4)
         hotkey('backspace')
 
-    def bind(self):
+    def bind(self, **kwargs):
         super().bind(sequence=None, func=None)
-        self.root.protocol("WM_DELETE_WINDOW",self.del_window)
+        self.root.protocol("WM_DELETE_WINDOW", self.del_window)
         self.textType.bind('<BackSpace>', self.backspace_Event)
         self.textType.bind('<Shift-Return>', self.shift_enterEvent)
         self.textType.bind('<Return>', self.return_Event)
