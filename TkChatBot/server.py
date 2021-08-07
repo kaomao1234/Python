@@ -7,7 +7,6 @@ class MainServer(Thread):
     def __init__(self):
         super().__init__()
         self.host, self.port = gethostbyname(gethostname()), 5000
-        print()
         self.sockObj = socket(AF_INET, SOCK_STREAM)
         self.sockObj.bind((self.host, self.port))
         self.sockObj.listen()
