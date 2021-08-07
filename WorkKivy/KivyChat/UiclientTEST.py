@@ -44,7 +44,6 @@ Builder.load_string("""
             size_hint_y: None
             size_hint_x: None
             on_press:root.submitText(text,scrollChat.chat)
-    
 """)
 
 
