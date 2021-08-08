@@ -26,7 +26,7 @@ y_offset = rows / 2
 A, B = 0, 0  # rotating animation
 
 theta_spacing = 10
-phi_spacing = 2 # for faster rotation change to 2, 3 or more, but first change 86, 87 lines as commented
+phi_spacing = 3  # for faster rotation change to 2, 3 or more, but first change 86, 87 lines as commented
 
 chars = ".,-~:;=!*#$@"  # luminance index
 
@@ -36,6 +36,7 @@ display_surface = pygame.display.set_mode((WIDTH, HEIGHT))
 # display_surface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 pygame.display.set_caption('Donut')
 font = pygame.font.SysFont('Arial', 18, bold=True)
+
 
 def hsv2rgb(h, s, v):
     return tuple(round(i * 255) for i in colorsys.hsv_to_rgb(h, s, v))
@@ -71,10 +72,13 @@ while run:
             m = math.cos(B)
             n = math.sin(B)
             t = c * h * g - f * e
-            x = int(x_offset + 40 * D * (l * h * m - t * n))  # 3D x coordinate after rotation
-            y = int(y_offset + 20 * D * (l * h * n + t * m))  # 3D y coordinate after rotation
+            # 3D x coordinate after rotation
+            x = int(x_offset + 40 * D * (l * h * m - t * n))
+            # 3D y coordinate after rotation
+            y = int(y_offset + 20 * D * (l * h * n + t * m))
             o = int(x + columns * y)  # 3D z coordinate after rotation
-            N = int(8 * ((f * e - c * d * g) * m - c * d * e - f * g - l * d * n))  # luminance index
+            N = int(8 * ((f * e - c * d * g) * m - c * d *
+                    e - f * g - l * d * n))  # luminance index
             if rows > y and y > 0 and x > 0 and columns > x and D > z[o]:
                 z[o] = D
                 b[o] = chars[N if N > 0 else 0]
@@ -83,8 +87,8 @@ while run:
         y_start = 0
 
     for i in range(len(b)):
-        A += 0.00002 # for faster rotation change to 0.0002
-        B += 0.00001 # for faster rotation change to 0.0001
+        A += 0.00005  # for faster rotation change to 0.0002
+        B += 0.00002  # for faster rotation change to 0.0001
         if i == 0 or i % columns:
             text_display(b[i], x_start, y_start)
             x_start += x_separator
@@ -93,7 +97,6 @@ while run:
             x_start = 0
             text_display(b[i], x_start, y_start)
             x_start += x_separator
-
 
     pygame.display.update()
 

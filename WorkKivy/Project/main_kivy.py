@@ -125,8 +125,8 @@ class MyScreenManager(ScreenManager):
         self.sign_up_page = SignUpPage()
         self.add_widget(self.login)
         self.add_widget(self.sign_up_page)
-        self.login.Sign_up.bind()
-        self.sign_up_page.back.bind()
+        self.login.Sign_up.bind(on_press=self.change_screen)
+        self.sign_up_page.back.bind(on_press=self.change_screen)
 
     def change_screen(self, event):
         if event.text == 'Sign-up':

@@ -17,18 +17,14 @@ class MainServer(Thread):
     def connectClient(self):
         while True:
             con, address = self.socketObj.accept()
-            if self.recClient(con, address) == False:
-                print(f'{address} is exit.')
-
-    def recClient(self, con: socket, address: str):
-        try:
             print('connect from', address)
-            while True:
-                con.send(bytes(input('send text to user :'), 'utf-8'))
-        except:
-            con.close()
-            return False
-
+            try:
+                while True:
+                    msg = bytes(input('send text to user : '), 'utf-8')
+                    con.send(msg)
+            except:
+                con.close()
+                break
 
 if __name__ == '__main__':
     MainServer().start()

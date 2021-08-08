@@ -20,4 +20,11 @@ class Frontend(Thread):
                 f'[color=#FF0000]{recData}[/color]' + '\n'
 
     def send(self, msg: str):
-        self.socketObj.send(bytes(msg, 'utf-8'))
+        if msg == '0':
+            self.socketObj.close()
+        else:
+            self.socketObj.send(bytes(msg, 'utf-8'))
+
+
+if __name__ == '__main__':
+    Frontend().start()

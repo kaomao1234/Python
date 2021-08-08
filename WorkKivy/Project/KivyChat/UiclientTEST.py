@@ -1,4 +1,7 @@
 import sys
+import kivy
+from kivy.config import Config
+Config.set('kivy', 'exit_on_escape', '0')
 from clientKv import Frontend
 from kivy.properties import StringProperty, ObjectProperty
 from kivy.core.window import Window
@@ -9,9 +12,7 @@ from kivy.lang import Builder
 from kivy.uix.label import Label
 from kivy.app import App
 from kivy.uix.textinput import TextInput
-import kivy
-from kivy.config import Config
-Config.set('kivy', 'exit_on_escape', '0')
+
 Builder.load_string("""
 <ScrollableLabel>:
     chat:chat
@@ -48,7 +49,7 @@ Builder.load_string("""
 
 
 class ScrollableLabel(ScrollView):
-    text = StringProperty()
+    text = StringProperty('')
 
 
 class ScreenUI(GridLayout):
@@ -56,7 +57,7 @@ class ScreenUI(GridLayout):
         super(ScreenUI, self).__init__()
         self.client = Frontend(self.getChat)
         self.client.start()
-        Window.bind(on_request_close=lambda s: sys.exit())
+        Window.bind(on_request_close=lambda s: self.client.send('0'))
 
     def submitText(self, event, chat):
         if event.text != '':
