@@ -3,18 +3,19 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty
+from kivy.uix.button import Button
 Builder.load_string("""
 <KVBL>:
     orientation:'vertical'
     Button:
         text:'Btn-1'
         background_color: 0, 1, 1, 1 
-        font_size:40
+        font_size:30
         on_press:root.on_click(self)
     Button:
         text:'Btn-2'
         background_color: 0, 1, 1, 1 
-        font_size:25 
+        font_size:30
         on_press:root.on_click(self)
     Button:
         text:'Btn-3'
