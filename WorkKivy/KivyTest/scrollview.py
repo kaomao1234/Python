@@ -1,62 +1,45 @@
-from kivy.app import App
-from kivy.core import text
-from kivy.uix.button import Button
-from kivy.uix.label import Label
-from kivy.uix.scrollview import ScrollView
-from kivy.properties import StringProperty
-from kivy.clock import Clock
-from kivy.uix.boxlayout import BoxLayout
+import kivy
+from kivy.lang import Builder
+from kivy.uix.floatlayout import FloatLayout
+from kivy.properties import ObjectProperty
+from kivy.base import runTouchApp
+# Build the .kv file
+Builder.load_string("""
+# Define the scroll view
+<Controller>:
+    layout_content: layout_content
+    BoxLayout:
+        id: bl
+        orientation: 'vertical'
+        padding: 10, 10
+        row_default_height: '48dp'
+        row_force_default: True
+        spacing: 10, 10
+        ScrollView:
+            size: self.size
+            GridLayout:
+                id: layout_content
+                size_hint_y: None
+                cols: 1
+                row_default_height: '20dp'
+                row_force_default: True
+                spacing: 0, 0
+                padding: 0, 0
 
-# long_text = "".join(
-#     ["this is a long line "+str(n)+"\n" for n in range(1, 101)])
+                Label:
+                    text: "Lorem ipsum dolor sit amet"
+""")
 
 
-
-
-class ScrollableLabel(ScrollView):
-    # text = StringProperty('')
+# Define scrollview class
+class Controller(FloatLayout):
+    layout_content = ObjectProperty(None)
 
     def __init__(self, **kwargs):
-        super(ScrollableLabel, self).__init__(**kwargs)
-        self.label = Label(size_hint_y=None, text="".join(
-            ["this is a long line "+str(n)+"\n" for n in range(1, 101)]))
-        self.add_widget(self.label)
-        Clock.schedule_once(self.update, -1)
-
-    def update(self, *args):
-        self.label.text_size = (self.label.width, None)
-        self.label.height = self.label.texture_size[1]
+        super(Controller, self).__init__(**kwargs)
+        self.layout_content.bind(
+            minimum_height=self.layout_content.setter('height'))
 
 
-
-class ScrollApp(App):
-    def build(self):
-        return ScrollableLabel()
-
-
-if __name__ == "__main__":
-    ScrollApp().run()
-# import kivy
-# from kivy.app import App
-# kivy.require('1.9.0')
-# from kivy.uix.label import Label
-# from kivy.uix.scrollview import ScrollView
-# from kivy.properties import StringProperty
-# from kivy.base import runTouchApp
-# from kivy.lang import Builder
-
-# Builder.load_string('''
-
-# # Define the scroll view
-# <ScrollableLabel>:
-#     text: 'You are learning Kivy' * 500
-#     Label:
-#         text: root.text
-#         font_size: 50
-#         text_size: self.width, None
-#         size_hint_y: None
-#         height: self.texture_size[1]
-# ''')
-# class ScrollableLabel(ScrollView):
-#     text = StringProperty('')
-# runTouchApp(ScrollableLabel())
+# run the App
+runTouchApp(Controller())

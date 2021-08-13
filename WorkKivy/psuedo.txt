@@ -1,6 +1,0 @@
-
-map = {text_scatter:text}
-on_touch_move:
-    text_scatter.pos
-    map[text_scatter].text
-Properties_widget = {text_scatter:(size,pos,text)} 

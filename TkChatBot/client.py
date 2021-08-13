@@ -39,7 +39,7 @@ class ClientUser(Thread):
     def sendMsg(self, m: str):
         if m == '0':
             self.sockObj.close()
-        try:
+        try: 
             self.sockObj.sendall(str.encode(m))
         except:
             print('Client is out.')

@@ -26,4 +26,4 @@ for i in num_code:
     morse.append(a)
 correct_morse = list(map(lambda s: MORSE_CODE_DICT[s], morse))
 correct_morse = [alphabet[alphabet.index(i)-2] for i in correct_morse]
-print('Answer is\n'+''.join(correct_morse))
+print('Answer is '+''.join(correct_morse))
