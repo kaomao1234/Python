@@ -11,4 +11,6 @@ class CoApp(Tk):
             Label(self,text=key,font='consolas 15',bg='#ffc107').grid(row=row,column=0,sticky='ew')
             Label(self,text=self.rqCovid[key],font='consolas 15',background='#ddc079').grid(row=row,column=1,sticky='ew')
 if __name__ == '__main__':
-    CoApp().mainloop()
+    # CoApp().mainloop()
+    rqCovid = rq.get('https://covid19.th-stat.com/json/covid19v2/getTodayCases.json')
+    print(rqCovid)
