@@ -1,4 +1,7 @@
-import kivy 
+from kivy.utils import get_color_from_hex, rgba
+from kivy.app import App
+from kivy.core import text
+from kivy.core.text import markup
 from kivy import Config
 Config.set('graphics', 'width', '600')
 Config.set('graphics', 'height', '500')
@@ -6,21 +9,19 @@ Config.set('graphics', 'minimum_width', '600')
 Config.set('graphics', 'minimum_height', '500')
 Config.set('graphics', 'resizable', '0')
 Config.set('graphics', 'multisamples', '0')
-from kivy.graphics import Color, Rectangle
-from kivy.uix.widget import Widget
-from kivy.uix.popup import Popup
-from kivy.uix.textinput import TextInput
-from kivy.uix.screenmanager import FadeTransition, ScreenManager, Screen, SlideTransition
-from kivy.uix.button import Button
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.label import Label
-from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.boxlayout import BoxLayout
 from kivy.core.window import Window
-from kivy.core.text import markup
-from kivy.core import text
-from kivy.app import App
-from kivy.utils import get_color_from_hex, rgba
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.label import Label
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.button import Button
+from kivy.uix.screenmanager import FadeTransition, ScreenManager, Screen, SlideTransition
+from kivy.uix.textinput import TextInput
+from kivy.uix.popup import Popup
+from kivy.uix.widget import Widget
+from kivy.graphics import Color, Rectangle
+import kivy
+
 
 width = 600
 height = 500
