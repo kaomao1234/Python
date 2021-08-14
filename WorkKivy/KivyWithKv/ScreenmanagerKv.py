@@ -97,7 +97,7 @@ class ScreenFive(Screen):
     pass
 # The ScreenManager controls moving between screens
 # You can change the transitions accorsingly
-screen_manager = ScreenManager(transition=RiseInTransition())
+screen_manager = ScreenManager(transition=SlideTransition())
 
 # Add the screens to the manager and then supply a name
 # that is used to switch screens
