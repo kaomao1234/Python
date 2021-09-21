@@ -16,7 +16,7 @@ KV = """
             rgba: root.primary_color
         Line:
             width: 1
-            rectangle: (self.x, self.y, self.width, self.height)
+            rectangle: (self.x, self.y,self.width,self.height)
 
 Screen:
     canvas:
@@ -49,7 +49,7 @@ class RectangleFlatButton(TouchRippleBehavior, Button):
             touch.ungrab(self)
             self.ripple_fade()
             return True
-        return False
+        # return False
 
 
 class MainApp(App):
