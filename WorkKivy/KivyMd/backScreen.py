@@ -1,3 +1,4 @@
+from pprint import pprint
 from kivy.lang import Builder
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.app import MDApp
@@ -10,7 +11,6 @@ Builder.load_string("""
 #: import get_color_from_hex kivy.utils.get_color_from_hex
 <TLongin@MDFloatLayout>:
     black:0,0,0,1
-    orientation: 'vertical'
     frontLayout:frontLayout
     FitImage:
         id:background
@@ -21,7 +21,7 @@ Builder.load_string("""
         orientation:'vertical'
         spacing:10
         id:frontLayout
-        radius:[dp(64),dp(64),dp(0),dp(0)]
+        radius:[dp(32),dp(32),dp(0),dp(0)]
         md_bg_color:get_color_from_hex("#ffffff")
         # orientation:'vertical'
         Label:
@@ -37,7 +37,6 @@ Builder.load_string("""
             Label:
                 size_hint_x: None
                 text: "[size=14]Username[/size]"
-                height:16
                 markup:True
                 color:root.black
         TextInput:
@@ -51,7 +50,6 @@ Builder.load_string("""
             Label:
                 size_hint_x: None
                 text: "[size=14]Password[/size]"
-                height:16
                 markup:True
                 color:root.black
         TextInput:
@@ -66,14 +64,13 @@ Builder.load_string("""
                 orientation:'horizontal'
                 AnchorLayout:
                     anchor_x:'center'
-                    MDFillRoundFlatButton:
+                    MDRaisedButton:
                         text: "Sign In"
                         font_size:14
                         md_bg_color: get_color_from_hex("#9b4f4f")
                 AnchorLayout:
                     anchor_x:'center'
-                    MDFillRoundFlatButton:
-                        id:p
+                    MDRaisedButton:
                         text: "Sign Up"
                         font_size:14
                         md_bg_color: get_color_from_hex("#9b4f4f")
@@ -88,16 +85,22 @@ Builder.load_string("""
                 font_size:14
         
 """)
+
+
 class TLongin(MDFloatLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.on_start()
+        pprint(dir(self.ids.m))
     def on_start(self):
-        trans = Animation(y=0,duration=0.5)
+        trans = Animation(y=0, duration=0.7)
         trans.start(self.frontLayout)
+
+
 class App(MDApp):
     def build(self):
         return TLongin()
+
+
 if __name__ == '__main__':
     App().run()
-    
