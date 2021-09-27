@@ -118,12 +118,12 @@ Builder.load_string("""
         center: root.center
         text: 'Bezier'
 <Line1>:
-    points:[100, 100, 200, 100, 100, 200]
     canvas:
         Color:
             rgba:get_color_from_hex("#9b4f4f")
         Line:
             width:2.
+            rectangle:(self.x,self.y,self.width,0)
     Label:
         text:'This is Line.'
         center:root.center
