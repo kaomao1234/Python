@@ -3,6 +3,7 @@ Config.set('graphics', 'width', '360')
 Config.set('graphics', 'height', '640')
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
+from kivy.uix.screenmanager import ScreenManager
 from kivy.animation import Animation 
 from kivy.lang import Builder
 from kivy.clock import Clock

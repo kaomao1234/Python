@@ -1,0 +1,125 @@
+#: import get_color_from_hex kivy.utils.get_color_from_hex
+#:import Window kivy.core.window.Window
+<SignIn@MDScreen>:
+    black:0,0,0,1
+    copper_rust:get_color_from_hex("#9b4f4f")
+    white:get_color_from_hex("#ffffff")
+    weathered_stone:get_color_from_hex("#c4c4c4")
+    AnchorLayout:
+        anchor_y:'top'
+        FitImage:
+            id:bg_img
+            source:"C:/Users/borip/Documents/GitHub/PythonWorkShop/WorkKivy/Project/WinterCakeApp/Icon/Rose_Vale_Flowers_Soft_Organic_Fashion_Logo.png"
+    MDScreen:
+        name:"sign_in_screen"
+        MDBoxLayout:
+            id:sign_in_frame
+            y:-1000
+            size_hint_y:0.5
+            orientation:'vertical'
+            radius:[dp(30),dp(30),dp(0),dp(0)]
+            md_bg_color:root.white
+            AnchorLayout:
+                anchor_x:'center'
+                size_hint_y:None
+                height:Window.size[1]/2+34
+                BoxLayout:
+                    height:Window.size[1]/2+34
+                    orientation:'vertical'
+                    padding:[30,0]
+                    BoxLayout:
+                        orientation:'horizontal'
+                        size_hint_y:None
+                        AnchorLayout:
+                            size_hint_y:None
+                            height:44
+                            id:Line_one
+                            anchor_y:"top"
+                            canvas:
+                                Color:
+                                    rgba:get_color_from_hex("#9b4f4f")
+                                Line:
+                                    width:3
+                                    rectangle:(Line_one.x,Line_one.y+Line_one.height/2,self.width,0)
+                        Label:
+                            text:"SiGN IN"
+                            font_size: '16dp'
+                            size_hint_y:None
+                            height:44
+                            color:root.copper_rust
+                            markup:True
+                            valign:"center"
+                        AnchorLayout:
+                            id:Line_two
+                            height:44
+                            size_hint_y:None
+                            anchor_y:"top"
+                            canvas:
+                                Color:
+                                    rgba:get_color_from_hex("#9b4f4f")
+                                Line:
+                                    width:3
+                                    rectangle:(Line_two.x,Line_two.y+Line_two.height/2,self.width,0)
+                    Label:
+                        size_hint_y:None
+                        height:16
+                        text:"Username"
+                        font_size:"14dp"
+                        color:root.black
+                        markup:True
+                        halign:'left'
+                        text_size:self.size
+                    MDTextField:
+                        height:37
+                        size_hint_y:None
+                        id:t_widget
+                        text:"Hello world"
+                    Label:
+                        height:16
+                        size_hint_y:None
+                        text:"Password"
+                        font_size:"14dp"
+                        color:root.black
+                        markup:True
+                        halign:'left'
+                        text_size:self.size
+                    GridLayout:
+                        cols:2
+                        size_hint_y:None
+                        height:37
+                        MDTextField:
+                            id:t_widget
+                            text:"Hello world"
+                            password:True
+                        MDIconButton:
+                            id:hide
+                            icon:"eye-off"
+                    GridLayout:
+                        cols:2
+                        size_hint_y:None
+                        AnchorLayout:
+                            anchor_x:'center'
+                            MDFillRoundFlatButton:
+                                size_hint:None,None
+                                text:"Sign In"
+                                -height:52
+                                -width:144
+                                font_size:"14dp"
+                                md_bg_color:root.copper_rust
+                        AnchorLayout:
+                            anchor_x:'center'
+                            MDFillRoundFlatButton:
+                                size_hint:None,None
+                                text:"Sign Up"
+                                -height:52
+                                -width:144
+                                font_size:"14dp"
+                                md_bg_color:root.copper_rust
+                    AnchorLayout:
+                        anchor_x:'center'
+                        size_hint_y: None
+                        height:38
+                        MDFlatButton:
+                            text:"Forgot Password?"
+                            theme_text_color: "Custom"
+                            text_color:root.copper_rust
