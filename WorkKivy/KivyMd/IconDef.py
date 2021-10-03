@@ -7,8 +7,7 @@ from kivymd.app import MDApp
 from kivymd.uix.list import OneLineIconListItem
 
 
-Builder.load_string(
-    '''
+Builder.load_string('''
 #:import images_path kivymd.images_path
 
 
