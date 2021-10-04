@@ -11,7 +11,7 @@ from kivy.uix.screenmanager import ScreenManager
 from kivy.lang import Builder
 from kivy.clock import Clock
 from kivy.animation import Animation
-path = "C:/Users/borip/Documents/GitHub/PythonWorkShop/WorkKivy/Project/WinterCakeApp/Page/"
+path = "C:/Users/borip/OneDrive/Documents/GitHub/PythonWorkShop/WorkKivy/Project/WinterCakeApp/Page/"
 lst_file = ["Sign_in.kv","Sign_up.kv"]
 for i in lst_file:
     Builder.load_file("{}{}".format(path, i))
