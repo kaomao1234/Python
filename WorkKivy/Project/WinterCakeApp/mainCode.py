@@ -87,7 +87,6 @@ class Sign_in(MDScreen):
         self.back_arrow.on_press = self.root.ids.sign_up.back_screen
         self.root.ids.on_board.add_widget(self.back_arrow)
         self.root.ids.sign_up.back_arrow = self.back_arrow
-        # self.root.ids.sign_up.back_arrow.on_press = self.root.ids.sign_up.back_screen
 
 
 class Sign_up(MDScreen):
@@ -99,6 +98,7 @@ class Sign_up(MDScreen):
         self.root = root
         self.ids.eye_pass.bind(state=partial(self.switch_event,self.ids.password_field))
         self.ids.eye_confirm_pass.bind(state=partial(self.switch_event,self.ids.confirm_password_field))
+        
     def back_screen(self, *e):
         self.manager.transition.direction = 'right'
         self.manager.transition.duration = 0.5
