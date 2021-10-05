@@ -5,17 +5,8 @@
     white:get_color_from_hex("#ffffff")
     weathered_stone:get_color_from_hex("#c4c4c4")
     md_bg_color:self.white
-    id:sign_up_id
-    name:'sign_up_page'
-    MDFillRoundFlatIconButton:
-        icon:'arrow-expand-left'
-        text:'back'
-        -height:69
-        y:Window.height-self.height
-        on_press: 
-            root.manager.transition.direction = 'right'
-            root.manager.transition.duration = 0.5
-            root.manager.current = 'sign_in_page'
+    name:'sign_up'
+    radius:[dp(30),dp(30),dp(0),dp(0)]
     MDBoxLayout:
         orientation:'vertical'
         spacing:10
@@ -40,7 +31,7 @@
                 font_size: 16
                 size_hint_x:None
                 size_hint_y:None
-                text:"SiGN IN"
+                text:"SiGN UP"
                 height:22
                 color:root.copper_rust
                 markup:True
@@ -56,13 +47,88 @@
                     Line:
                         width:1
                         rectangle:(Line_two.x,Line_two.y+Line_two.height/2,self.width,0)
-            Label:
+        Label:
+            size_hint_y:None
+            height:16
+            text:"Username"
+            font_size:"14dp"
+            color:root.black
+            markup:True
+            halign:'left'
+            text_size:self.size
+        MDTextField:
+            size_hint_y:None
+            id:usename_field
+            text:"Hello world"
+            text_color:root.black
+            line_color_focus:root.copper_rust
+        Label:
+            size_hint_y:None
+            height:16
+            text:"Email"
+            font_size:"14dp"
+            color:root.black
+            markup:True
+            halign:'left'
+            text_size:self.size
+        MDTextField:
+            size_hint_y:None
+            id:usename_field
+            text:"Hello world"
+            text_color:root.black
+            line_color_focus:root.copper_rust
+        Label:
+            size_hint_y:None
+            height:16
+            text:"Password"
+            font_size:"14dp"
+            color:root.black
+            markup:True
+            halign:'left'
+            text_size:self.size
+        GridLayout:
+            cols:2
+            size_hint_y:None
+            height:37
+            MDTextField:
                 size_hint_y:None
-                height:16
-                text:"Username"
+                id:password_field
+                password:True
+                text_color:root.black
+                line_color_focus:root.copper_rust
+            MDIconButton:
+                size_hint_y:None
+                id:eye_pass
+                icon:"eye-off"
+        Label:
+            size_hint_y:None
+            height:16
+            text:"Confirm Password"
+            font_size:"14dp"
+            color:root.black
+            markup:True
+            halign:'left'
+            text_size:self.size
+        GridLayout:
+            cols:2
+            size_hint_y:None
+            height:37
+            MDTextField:
+                size_hint_y:None
+                id:confirm_password_field
+                password:True
+                text_color:root.black
+                line_color_focus:root.copper_rust
+            MDIconButton:
+                size_hint_y:None
+                id:eye_confirm_pass
+                icon:"eye-off"
+        AnchorLayout:
+            anchor_x:'center'
+            MDFillRoundFlatButton:
+                size_hint:None,None
+                text:"Create Account"
+                -height:45
+                -width:186
                 font_size:"14dp"
-                color:root.black
-                markup:True
-                halign:'left'
-                text_size:self.size
-            
+                md_bg_color:root.copper_rust
