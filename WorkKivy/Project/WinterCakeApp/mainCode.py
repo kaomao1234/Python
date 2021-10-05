@@ -84,9 +84,10 @@ class Sign_in(MDScreen):
         self.manager.current = 'sign_up'
         anim = Animation(size_hint_y=0.7, duration=0.2)
         anim.start(self.root.ids.backdrop_widget)
+        self.back_arrow.on_press = self.root.ids.sign_up.back_screen
         self.root.ids.on_board.add_widget(self.back_arrow)
         self.root.ids.sign_up.back_arrow = self.back_arrow
-        self.root.ids.sign_up.back_arrow.on_press = self.root.ids.sign_up.back_screen
+        # self.root.ids.sign_up.back_arrow.on_press = self.root.ids.sign_up.back_screen
 
 
 class Sign_up(MDScreen):
