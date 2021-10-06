@@ -10,6 +10,7 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivy.uix.screenmanager import ScreenManager
 from kivymd.uix.button import MDRoundFlatIconButton
+from kivy.uix.screenmanager import SwapTransition
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.clock import Clock
@@ -79,7 +80,7 @@ class Sign_in(MDScreen):
             text_event.password = True
 
     def next_screen(self):
-        self.manager.transition.direction = 'left'
+        self.manager.transition.direction = 'up'
         self.manager.transition.duration = 0.5
         self.manager.current = 'sign_up'
         anim = Animation(size_hint_y=0.7, duration=0.2)
@@ -100,7 +101,7 @@ class Sign_up(MDScreen):
         self.ids.eye_confirm_pass.bind(state=partial(self.switch_event,self.ids.confirm_password_field))
         
     def back_screen(self, *e):
-        self.manager.transition.direction = 'right'
+        self.manager.transition.direction = 'down'
         self.manager.transition.duration = 0.5
         self.manager.current = 'sign_in'
         anim = Animation(size_hint_y=0.5, duration=0.2)

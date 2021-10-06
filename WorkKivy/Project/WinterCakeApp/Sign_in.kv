@@ -7,13 +7,11 @@
     copper_rust:get_color_from_hex("#9b4f4f")
     white:get_color_from_hex("#ffffff")
     weathered_stone:get_color_from_hex("#c4c4c4")
+    radius:[dp(30),dp(30),dp(0),dp(0)]
     MDBoxLayout:
-        spacing:10
         orientation:'vertical'
-        padding:[30,0]
-        size_hint_y:None
-        height:291
-        y:Window.height/2-self.height-20
+        spacing:10
+        padding:[30,15]
         MDBoxLayout:
             orientation:'horizontal'
             size_hint_y:None
@@ -30,11 +28,10 @@
                         width:1
                         rectangle:(Line_one.x,Line_one.y+Line_one.height/2,self.width,0)
             Label:
-                id:ls
                 font_size: 16
                 size_hint_x:None
                 size_hint_y:None
-                text:"SiGN IN"
+                text:"SIGN IN"
                 height:22
                 color:root.copper_rust
                 markup:True
@@ -91,8 +88,6 @@
                 icon:"eye-off"
         GridLayout:
             cols:2
-            size_hint_y:None
-            height:62
             AnchorLayout:
                 anchor_x:'center'
                 MDFillRoundFlatButton:
@@ -115,9 +110,9 @@
                         
         AnchorLayout:
             anchor_x:'center'
-            size_hint_y: None
-            height:38
             MDFlatButton:
                 text:"[i]Forgot Password?[/i]"
                 theme_text_color: "Custom"
                 text_color:root.copper_rust
+                size_hint_y:None
+                -height:38
