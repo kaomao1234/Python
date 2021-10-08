@@ -3,20 +3,19 @@ import kivymd
 from kivy.config import Config
 Config.set('graphics', 'width', '360')
 Config.set('graphics', 'height', '640')
-from pprint import pprint
-from functools import partial
-from kivymd.app import MDApp
-from kivymd.uix.screen import MDScreen
-from kivymd.uix.floatlayout import MDFloatLayout
-from kivy.uix.screenmanager import ScreenManager
-from kivymd.uix.button import MDRoundFlatIconButton
-from kivy.uix.screenmanager import SwapTransition
-from kivy.core.window import Window
-from kivy.lang import Builder
-from kivy.clock import Clock
-from kivy.animation import Animation
 from kivy.utils import get_color_from_hex
-
+from kivy.animation import Animation
+from kivy.clock import Clock
+from kivy.lang import Builder
+from kivy.core.window import Window
+from kivy.uix.screenmanager import SwapTransition
+from kivymd.uix.button import MDRoundFlatIconButton
+from kivy.uix.screenmanager import ScreenManager
+from kivymd.uix.floatlayout import MDFloatLayout
+from kivymd.uix.screen import MDScreen
+from kivymd.app import MDApp
+from functools import partial
+from pprint import pprint
 
 
 lst_file = ["onboarding.kv", 'sign_in.kv', 'sign_up.kv']
@@ -63,8 +62,8 @@ class Sign_in(MDScreen):
             text='back',
             size_hint=(.1, .1),
             pos_hint={'x': 0, 'y': .9},
-            text_color= self.root.white,
-            theme_text_color= "Custom",
+            text_color=self.root.white,
+            theme_text_color="Custom",
             line_color=self.root.copper_rust,
             icon_color=self.root.white
         )
@@ -97,9 +96,11 @@ class Sign_up(MDScreen):
         super(Sign_up, self).__init__(**kwargs)
         self.back_arrow = ''
         self.root = root
-        self.ids.eye_pass.bind(state=partial(self.switch_event,self.ids.password_field))
-        self.ids.eye_confirm_pass.bind(state=partial(self.switch_event,self.ids.confirm_password_field))
-        
+        self.ids.eye_pass.bind(state=partial(
+            self.switch_event, self.ids.password_field))
+        self.ids.eye_confirm_pass.bind(state=partial(
+            self.switch_event, self.ids.confirm_password_field))
+
     def back_screen(self, *e):
         self.manager.transition.direction = 'right'
         self.manager.transition.duration = 0.5
@@ -107,7 +108,7 @@ class Sign_up(MDScreen):
         anim = Animation(size_hint_y=0.5, duration=0.2)
         anim.start(self.root.ids.backdrop_widget)
         self.root.ids.on_board.remove_widget(self.back_arrow)
-        
+
     def switch_event(self, text_event, *e):
         focus = e[1]
         instance = e[0]
@@ -117,6 +118,7 @@ class Sign_up(MDScreen):
         else:
             instance.icon = "eye-off"
             text_event.password = True
+
 
 class WinterCake(MDApp):
 

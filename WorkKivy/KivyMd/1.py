@@ -3,33 +3,29 @@ from kivy.core.window import Window
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
 from kivy.lang import Builder
-Builder.load_string(""" 
-<ItemBackdropFrontLayer@TwoLineAvatarListItem>
-    icon: "android"
-
-    IconLeftWidget:
-        icon: root.icon
-
-
-<MyBackdropFrontLayer@ItemBackdropFrontLayer>
-    backdrop: None
-    text: "Lower the front layer"
-    secondary_text: " by 50 %"
-    icon: "transfer-down"
-    pos_hint: {"top": 1}
-    _no_ripple_effect: True
-    
-<Example>:
-    Image:
-        size_hint: .8, .8
-        source: "data/logo/kivy-icon-512.png"
-        pos_hint: {"center_x": .5, "center_y": .6}
-    MyBackdropFrontLayer:
+from pprint import pprint
+Builder.load_string("""
+<Example@MDScreen>:
+    MDBoxLayout:
+        pos_hint:{'x':0.5,'y':0.5}
+        orientation:'vertical'
+        MDTextFieldRound:
+            id:text_test
+            size_hint_x:None
+            width:300
+            icon_left: 'key-variant'
+            icon_right: 'eye-off'
+            hint_text: 'Field with left and right icons'
 """)
 
 
 class Example(MDScreen):
-    pass
+    def __init__(self, **kwargs):
+        super(Example, self).__init__(**kwargs)
+        pprint(dir(self.ids.text_test))
+        self.ids.text_test.bind(on_focus=self.p)
+    def p(self,*args):
+        print(args)
 
 
 class App(MDApp):

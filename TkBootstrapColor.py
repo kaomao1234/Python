@@ -28,13 +28,13 @@ class ColorSample(Tk):
                       'gray-700': '#506690',
                       'gray-800': '#384C74',
                       'gray-900': '#1B2A4E',
-                      'black': '#161C2D'} 
-        self.resizable(0,0)
+                      'black': '#161C2D'}
+        self.resizable(0, 0)
         for i in self.color:
-            Label(self, text=i, background=self.color[i], font='consolas 15',width=15).grid(
-                sticky='ew',column=0,row=list(self.color.keys()).index(i))
-            Label(self, text=self.color[i], font='consolas 15',width=15).grid(
-                sticky='ew',column=1,row=list(self.color.keys()).index(i))
+            Label(self, text=i, background=self.color[i], font='consolas 15', width=15).grid(
+                sticky='ew', column=0, row=list(self.color.keys()).index(i))
+            Label(self, text=self.color[i], font='consolas 15', width=15).grid(
+                sticky='ew', column=1, row=list(self.color.keys()).index(i))
 
     def regColor(self, m):
         m = m.split(';')
@@ -44,5 +44,5 @@ class ColorSample(Tk):
 
 
 if __name__ == '__main__':
-    # ColorSample().mainloop()
-    print([int(input('input h'))*int(input('input b'))for i in range(0,5)])
+    ColorSample().mainloop()
+    # print([int(input('input h'))*int(input('input b'))for i in range(0,5)])
