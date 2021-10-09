@@ -1,0 +1,21 @@
+<ShopScreen@MDScreen>:
+    black:0, 0, 0, 1
+    copper_rust:get_color_from_hex("#9b4f4f")
+    white:get_color_from_hex("#ffffff")
+    weathered_stone:get_color_from_hex("#c4c4c4")
+    MDBoxLayout:
+        MDBoxLayout:
+            orientation:'vertical'
+            size_hint_y:None
+            height:85
+            md_bg_color:root.copper_rust
+            Label:
+                text:"หน้าหลัก"
+                font_name:'FiraCode-VariableFont_wght.ttf'
+                halign:'center'
+                font_size:20
+                markup:True
+                color:root.white
+                text_size:self.size
+                size_hint_y:None
+            

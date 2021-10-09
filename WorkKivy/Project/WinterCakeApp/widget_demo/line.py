@@ -26,5 +26,5 @@ class MApp(App):
         m.add_widget(Line1())
         root.add_widget(m)
         return root
-if __name__ == '__main__':
-    MApp().run()
+# if __name__ == '__main__':
+#     MApp().run()

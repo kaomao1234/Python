@@ -16,7 +16,7 @@ from kivymd.uix.screen import MDScreen
 from kivymd.app import MDApp
 from functools import partial
 from pprint import pprint
-
+from kivy.properties import ColorProperty
 
 lst_file = ["onboarding.kv", 'sign_in.kv', 'sign_up.kv']
 for i in lst_file:
@@ -51,7 +51,6 @@ class MainScreen(ScreenManager):
 
 class Sign_in(MDScreen):
     id = 'sign_in'
-
     def __init__(self, root, **kwargs):
         super(Sign_in, self).__init__(**kwargs)
         self.ids.eye_pass.bind(state=partial(
@@ -59,13 +58,11 @@ class Sign_in(MDScreen):
         self.root = root
         self.back_arrow = MDRoundFlatIconButton(
             icon='arrow-expand-left',
-            text='back',
             size_hint=(.1, .1),
             pos_hint={'x': 0, 'y': .9},
-            text_color=self.root.white,
             theme_text_color="Custom",
-            line_color=self.root.copper_rust,
-            icon_color=self.root.white
+            line_color=self.copper_rust,
+            icon_color=self.white
         )
 
     def switch_event(self, text_event, *e):
