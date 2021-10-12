@@ -61,6 +61,8 @@
             id:usename_field
             text:"Hello world"
             text_color:root.black
+            # text_color_normal:root.black
+            # text_color_focus:root.black
             line_color_focus:root.copper_rust
         Label:
             height:16
@@ -81,12 +83,13 @@
                 text:"Hello world"
                 password:True
                 text_color:root.black
+                # text_color_focus:root.black
+                # text_color_normal:root.black
                 line_color_focus:root.copper_rust
             MDIconButton:
                 size_hint_y:None
                 id:eye_pass
                 icon:"eye-off"
-                ripple_scale:0
         GridLayout:
             cols:2
             AnchorLayout:
@@ -98,6 +101,7 @@
                     -width:144
                     font_size:"14dp"
                     md_bg_color:root.copper_rust
+                    on_press:root.next_shop_page()
             AnchorLayout:
                 anchor_x:'center'
                 MDFillRoundFlatButton:
@@ -107,7 +111,7 @@
                     -width:144
                     font_size:"14dp"
                     md_bg_color:root.copper_rust
-                    on_press:root.next_screen()
+                    on_press:root.next_sign_up()
                         
         AnchorLayout:
             anchor_x:'center'
