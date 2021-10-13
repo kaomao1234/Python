@@ -2,6 +2,7 @@ from kivy.uix.screenmanager import (ScreenManager, Screen, NoTransition,
                                     SlideTransition, CardTransition, SwapTransition,
                                     FadeTransition, WipeTransition, FallOutTransition, RiseInTransition)
 from kivy.lang import Builder
+from kivymd.uix.transition import MDFadeSlideTransition
 import kivy
 
 # base Class of your App inherits from the App class.
@@ -97,7 +98,7 @@ class ScreenFive(Screen):
     pass
 # The ScreenManager controls moving between screens
 # You can change the transitions accorsingly
-screen_manager = ScreenManager(transition=SlideTransition())
+screen_manager = ScreenManager(transition=MDFadeSlideTransition())
 
 # Add the screens to the manager and then supply a name
 # that is used to switch screens

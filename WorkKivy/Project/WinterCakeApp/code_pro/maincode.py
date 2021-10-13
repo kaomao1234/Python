@@ -19,6 +19,7 @@ from pprint import pprint
 from kivy.uix.button import Button
 from kivy.properties import ColorProperty
 from kivy.core.window import Window
+from kivymd.uix.transition import MDFadeSlideTransition
 lst_file = ["onboarding.kv", 'sign_in.kv', 'sign_up.kv', 'shopping.kv']
 for i in lst_file:
     Builder.load_file("{}".format(i))
@@ -34,6 +35,7 @@ class MainScreen(ScreenManager):
         super(MainScreen, self).__init__(**kwargs)
         self.add_layout_with_id()
         Clock.schedule_once(self.start, 4)
+        self.transition = MDFadeSlideTransition()
 
     def add_layout_with_id(self):
         sign_in = Sign_in
@@ -93,7 +95,6 @@ class Sign_in(MDScreen):
         self.root.ids.sign_up.back_arrow = self.back_arrow
 
     def next_shop_page(self):
-        self.root.transition.direction = 'left'
         self.root.transition.duration = 0.2
         self.root.current = 'shop_screen'
 
@@ -112,7 +113,7 @@ class Sign_up(MDScreen):
 
     def back_to_sign_in(self, *e):
         self.manager.transition.direction = 'right'
-        self.manager.transition.duration = 0.5
+        self.manager.transition.duration = 0.2
         self.manager.current = 'sign_in'
         anim = Animation(size_hint_y=0.5, duration=0.2)
         anim.start(self.root.ids.backdrop_widget)
@@ -135,18 +136,14 @@ class ShopScreen(MDScreen):
     def __init__(self, root, **kwargs):
         super(ShopScreen, self).__init__(**kwargs)
         self.root = root
-        self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
+        self._keyboard = Window.request_keyboard(None,self)
         self._keyboard.bind(on_key_down=self._on_keyboard_down)
         for i in range(1,21):
             self.ids.shop_view.add_widget(Button(text=f"Product {i}"))
 
-    def _keyboard_closed(self):
-        self._keyboard.unbind(on_key_down=self._on_keyboard_down)
-        self._keyboard = None
-
     def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
+        print(keycode[1])
         if keycode[1] == 'c':
-            self.root.transition.direction = 'right'
             self.root.transition.duration = 0.2
             self.root.current = 'on_board_screen'
 
