@@ -3,9 +3,9 @@ from kivy.factory import Factory
 from kivymd.app import MDApp
 
 class MDLive(App,MDApp):
-    # DEBUG=True
+    DEBUG=1
     CLASSES ={
-        'MainScreen':'code_pro.maincode'
+        'MainScreen':'maincode'
     }
     AUTORELOADER_PATHS=[
         (".",{'recursive':True})

@@ -86,7 +86,7 @@ class Sign_in(MDScreen):
 
     def next_sign_up(self):
         self.manager.transition.direction = 'left'
-        self.manager.transition.duration = 0.5
+        self.manager.transition.duration = 0.2
         self.manager.current = 'sign_up'
         anim = Animation(size_hint_y=0.7, duration=0.2)
         anim.start(self.root.ids.backdrop_widget)
