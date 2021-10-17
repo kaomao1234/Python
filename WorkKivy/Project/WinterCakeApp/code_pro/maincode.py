@@ -36,6 +36,7 @@ class MainScreen(ScreenManager):
         self.add_layout_with_id()
         Clock.schedule_once(self.start, 4)
         self.transition = MDFadeSlideTransition()
+        print(self.weathered_stone)
 
     def add_layout_with_id(self):
         sign_in = Sign_in
@@ -128,7 +129,6 @@ class Sign_up(MDScreen):
         else:
             instance.icon = "eye-off"
             text_event.password = True
-
 
 class ShopScreen(MDScreen):
     id = 'shopping'

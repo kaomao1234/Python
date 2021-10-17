@@ -3,15 +3,14 @@ from kivy.factory import Factory
 from kivymd.app import MDApp
 
 class MDLive(App,MDApp):
-    DEBUG=1
+    # DEBUG=1
     CLASSES ={
-        'MainScreen':'maincode'
+        'BoxApp':'mdraise_btn'
     }
     AUTORELOADER_PATHS=[
         (".",{'recursive':True})
     ]
     def build_app(self,*args):
         print("Auto reload.")
-        return Factory.MainScreen()
-    
+        return Factory.BoxApp()
 MDLive().run()
