@@ -2,6 +2,7 @@ from kivy.uix.button import Button
 from kivy.lang import Builder
 from kivy.app import App
 from kivy.uix.recycleview import RecycleView
+from kivy.uix.recycleboxlayout import RecycleBoxLayout
 from functools import *
 Builder.load_string("""
 <Myview>:
@@ -18,8 +19,8 @@ Builder.load_string("""
         default_size_hint: 0.4, None 
         size_hint_y: None
         height: self.minimum_height
-        orientation: 'vertical' # defines the orientation of data items""")
-
+        orientation: 'vertical' # defines the orientation of data items
+""")
 
 class Myview(RecycleView):
     def __init__(self, **kwargs):

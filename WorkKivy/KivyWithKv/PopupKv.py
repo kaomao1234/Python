@@ -59,8 +59,8 @@ class MyApp(App):
 
 
 def show_popup():
-    popupWindow = Popup(title="Popup Window",
-                        size_hint=(None, None), size=(200, 200))
+    popupWindow = Popup(
+                        size_hint=(None, None), size=(200, 200),auto_dismiss=False)
     show = Popups(popupWindow)
     setattr(popupWindow, 'content', show)
 

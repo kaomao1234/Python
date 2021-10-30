@@ -24,13 +24,14 @@ class Rebox(RecycleBoxLayout):
 class ExampleViewer(RecycleView):
     def __init__(self, **kwargs):
         super(ExampleViewer, self).__init__(**kwargs)
-        self.data = [{'text': str(x)} for x in range(20)]
         self.orientation = 'vertical'
         self.viewclass = 'Button'
         self.spacing = 40
         self.padding = (10, 10)
         self.space_x = self.size[0]/3
         self.add_widget(RecycleBoxLayout())
+        self.data = [{'text': str(x)} for x in range(20)]
+        
 
 
 class MainScreen(Screen):

@@ -73,9 +73,10 @@ class ToolBox(GridLayout):
         self.Button_btn = Button(
             text='+Button', font_size=14, height=44, size_hint_y=None)
         for i in [self.label_btn, self.TInput_btn, self.Button_btn]:
+            i.bind(on_release=lambda btn: self.tool_bar.select(btn.text))
             self.tool_bar.add_widget(i)
-            i.bind()
-        self.tool_drop.bind()
+        self.tool_bar.bind(on_release=self.tool_bar.open)
+        self.tool_bar.bind(on_select=lambda instance, x: setattr(instance, 'text', x))
         self.add_widget(self.tool_drop)
 
 
