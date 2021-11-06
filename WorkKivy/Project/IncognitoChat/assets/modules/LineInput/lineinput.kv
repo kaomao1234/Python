@@ -1,0 +1,14 @@
+<LineInput>:
+    height:self.children[0].height
+    size_hint_y:None
+    MDTextField:
+        pos_hint:{'center_x':0.5}
+        cursor_color:root.cursor_color
+        line_color_focus:root.under_line_color
+        line_color_normal:root.under_line_color
+        text_color_focus:root.text_color
+        text_color_normal:root.text_color
+        on_text:root.bind_text(self) if root.bind_text != None else lambda x : x
+        size_hint_y:None
+        multiline:False
+        font_size:root.font_size

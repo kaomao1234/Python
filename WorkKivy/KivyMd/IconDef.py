@@ -5,7 +5,7 @@ from kivy.uix.screenmanager import Screen
 from kivymd.icon_definitions import md_icons
 from kivymd.app import MDApp
 from kivymd.uix.list import OneLineIconListItem
-
+from kivymd.uix.fitimage import FitImage
 
 Builder.load_string('''
 #:import images_path kivymd.images_path
@@ -73,7 +73,7 @@ class PreviousMDIcons(Screen):
         self.ids.rv.data = []
         for name_icon in md_icons.keys():
             if search:
-                if text in name_icon:
+                if text !='' and text[0].lower() == name_icon[0].lower():
                     add_icon_item(name_icon)
             else:
                 add_icon_item(name_icon)

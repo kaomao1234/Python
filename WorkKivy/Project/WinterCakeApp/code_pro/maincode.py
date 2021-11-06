@@ -9,7 +9,7 @@ from kivy.clock import Clock
 from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.uix.screenmanager import SwapTransition
-from kivymd.uix.button import MDRoundFlatIconButton
+from kivymd.uix.button import MDRoundFlatIconButton,MDIconButton
 from kivy.uix.screenmanager import ScreenManager
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.screen import MDScreen
@@ -34,9 +34,8 @@ class MainScreen(ScreenManager):
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
         self.add_layout_with_id()
-        Clock.schedule_once(self.start, 4)
+        Clock.schedule_once(self.start, 2)
         self.transition = MDFadeSlideTransition()
-        print(self.weathered_stone)
 
     def add_layout_with_id(self):
         sign_in = Sign_in
@@ -64,14 +63,11 @@ class Sign_in(MDScreen):
         self.ids.eye_pass.bind(state=partial(
             self.switch_event, self.ids.password_field))
         self.root = root
-        self.back_arrow = MDRoundFlatIconButton(
+        self.back_arrow = MDIconButton(
             icon='arrow-expand-left',
             size_hint=(.1, .1),
             pos_hint={'x': 0, 'y': .9},
-            text='back',
-            theme_text_color="Custom",
-            line_color=self.copper_rust,
-            icon_color=self.white,
+            theme_text_color= "Custom",
             text_color=self.white,
         )
 
@@ -86,15 +82,15 @@ class Sign_in(MDScreen):
             text_event.password = True
 
     def next_sign_up(self):
+        self.root.ids.on_board.add_widget(self.back_arrow)
+        self.root.ids.sign_up.back_arrow = self.back_arrow
+        self.back_arrow.on_press = self.root.ids.sign_up.back_to_sign_in
+        anim = Animation(size_hint_y=0.7, duration=0.2)
+        anim.start(self.root.ids.backdrop_widget)
         self.manager.transition.direction = 'left'
         self.manager.transition.duration = 0.2
         self.manager.current = 'sign_up'
-        anim = Animation(size_hint_y=0.7, duration=0.2)
-        anim.start(self.root.ids.backdrop_widget)
-        self.back_arrow.on_press = self.root.ids.sign_up.back_to_sign_in
-        self.root.ids.on_board.add_widget(self.back_arrow)
-        self.root.ids.sign_up.back_arrow = self.back_arrow
-
+        
     def next_shop_page(self):
         self.root.transition.duration = 0.2
         self.root.current = 'shop_screen'

@@ -1,0 +1,19 @@
+from kivymd.app import MDApp
+from kivy.lang import Builder
+from kivymd.uix.textfield import MDTextField
+KV ="""
+MDScreen:
+    MDTextField:
+        hint_text:'กกหกหฟ'
+        # text:
+        font_name:'assets/fonts/Benjamin/benjamin.ttf'
+        pos_hint:{'center_x':.5,'center_y':.5}
+        size_hint_x:0.5
+        font_name_helper_text:'assets/fonts/Benjamin/benjamin.ttf'
+        font_name_hint_text:'assets/fonts/Benjamin/benjamin.ttf'
+"""
+
+class App(MDApp):
+    def build(self):
+        return Builder.load_string(KV)
+App().run()

@@ -1,0 +1,97 @@
+<RegisterScreen>:
+    white:hex("#FAFAFA")
+    black:0,0,0,1
+    sukhumvit_font:'assets/fonts/SukhumvitSet-Medium.ttf'
+    barlow_font:'assets/fonts/Barlow/Barlow-Black.ttf'
+    encode_sansemi_bold_font:'assets/fonts/Encode_Sans_Semi_Expanded/EncodeSansSemiExpanded-SemiBold.ttf'
+    encode_sansemi_font:'assets/fonts/Encode_Sans_Semi_Expanded/EncodeSansSemiExpanded-Black.ttf'
+    MDLabel:
+        text:'      Register now'
+        font_size:'24'
+        size_hint_y:0.1
+        size_hint_x:0.8
+        halign:'center'
+        theme_text_color: "Custom"
+        radius:30
+        pos_hint:{'center_x':0.2,'center_y':0.85}
+        text_color:root.white
+        line_color:root.white
+    MDBoxLayout:
+        orientation:'vertical'
+        size_hint_x: 0.6
+        adaptive_height:True
+        pos_hint:{'center_x':0.5,'center_y':0.45}
+        # opacity: 0.7
+        md_bg_color:hex('#2D3B60')
+        spacing:10
+        MDLabel:
+            height:self.texture_size[1]
+            size_hint_y:None
+            text:'Username'
+            theme_text_color: "Custom"
+            front_size:14
+            text_color:root.white
+        # LineInput:
+        #     text_color:root.white
+        #     under_line_color:root.white
+        #     multiline:False
+        #     font_size:14
+        MDLabel:
+            height:self.texture_size[1]
+            size_hint_y:None
+            text:"Password"
+            theme_text_color: "Custom"
+            front_size:14
+            text_color:root.white
+        # TwoLineInput:
+        #     font_size:14
+        #     text_color:root.white
+        #     under_line_color:root.white
+        #     helper_color:root.white
+        #     helper_text:'hello world'
+        #     bind_text:root.on_password
+        #     helper_font_name:root.sukhumvit_font
+        #     helper_bind_text:root.on_lengt(self.ids.line_text)
+        MDLabel:
+            height:self.texture_size[1]
+            size_hint_y:None
+            text:'Confirm Password'
+            theme_text_color: "Custom"
+            front_size:14
+            text_color:root.white
+        # TwoLineInput:
+        #     font_size:14
+        #     text_color:root.white
+        #     under_line_color:root.white
+        #     helper_color:root.white
+        #     helper_text:''
+        #     bind_text:root.on_password
+        MDLabel:
+            height:self.texture_size[1]
+            size_hint_y:None
+            text:"Email"
+            theme_text_color: "Custom"
+            front_size:14
+            text_color:root.white
+        MDTextField:
+            line_color_focus:root.white
+            line_color_normal:root.white
+            text_color_focus:root.white
+            text_color_normal:root.white
+            font_size:14
+            # helper_text:'สวัสดี'
+            font_name_helper_text:root.sukhumvit_font
+            helper_text_color_normal:root.white
+            helper_text_color_focus:root.white
+        # LineInput:
+        #     text_color:root.white
+        #     under_line_color:root.white
+        #     multiline:False
+        #     font_size:14
+        MDRoundFlatButton:
+            text:'Submit'
+            size_hint_x:1
+            size_hint_y:None
+            -height:root.height*0.08
+            line_color:root.white
+            text_color:root.white
