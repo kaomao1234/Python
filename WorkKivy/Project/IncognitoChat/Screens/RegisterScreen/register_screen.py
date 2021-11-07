@@ -1,8 +1,5 @@
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.textfield import MDTextField
-from time import sleep
 from kivy.clock import Clock
-# from functools import partial
 class RegisterScreen(MDScreen):
     def __init__(self,**kw):
         super(RegisterScreen, self).__init__(**kw)
