@@ -1,0 +1,111 @@
+<RegisterScreen>:
+    white:hex("#FAFAFA")
+    black:0,0,0,1
+    sukhumvit_font:'assets/fonts/SukhumvitSet-Medium.ttf'
+    barlow_font:'assets/fonts/Barlow/Barlow-Black.ttf'
+    encode_sansemi_bold_font:'assets/fonts/Encode_Sans_Semi_Expanded/EncodeSansSemiExpanded-SemiBold.ttf'
+    encode_sansemi_font:'assets/fonts/Encode_Sans_Semi_Expanded/EncodeSansSemiExpanded-Black.ttf'
+    MDRelativeLayout:
+        size_hint_y:0.1
+        pos_hint:{'center_y':0.85,'center_x':0.1}
+        canvas.after:
+            Color:
+                rgb:hex("#FAFAFA")
+            Line:
+                width:1
+                rounded_rectangle:(self.x,self.y,self.width,self.height,30,30,30,30)
+        MDLabel:
+            text:'Register now'
+            font_size:24
+            size_hint_y:0.1
+            halign:'center'
+            theme_text_color: "Custom"
+            pos_hint:{'center_x':0.7,'center_y':0.5}
+            text_color:root.white
+    MDBoxLayout:
+        orientation:'vertical'
+        size_hint_x: 0.75
+        size_hint_y:0.45
+        pos_hint:{'center_x':0.5,'center_y':0.53}
+        spacing:5
+        padding:[30,20]
+        canvas:
+            Color:
+                rgba:[0.17647058823529413, 0.23137254901960785, 0.3764705882352941, 0.7]
+            RoundedRectangle:
+                pos:self.pos
+                size:self.size
+                radius:[20,20,20,20]
+        MDLabel:
+            text:'Username'
+            theme_text_color: "Custom"
+            font_name: root.encode_sansemi_font
+            font_size:12
+            text_color:root.white
+        MDRelativeLayout:
+            size_hint_y:None
+            height:self.children[0].height
+            MDTextField:
+                text_color_normal:root.white
+                text_color_focus:root.white
+                line_color_focus:root.white
+                line_color_normal:root.white
+        MDLabel:
+            text:"Password"
+            theme_text_color: "Custom"
+            font_size:12
+            font_name: root.encode_sansemi_font
+            text_color:root.white
+        MDRelativeLayout:
+            size_hint_y:None
+            height:self.children[0].height
+            MDTextField:
+                line_color_focus:root.white
+                line_color_normal:root.white
+                text_color_focus:root.white
+                text_color_normal:root.white
+                font_size:14
+                font_name_helper_text:root.sukhumvit_font
+                helper_text_color_normal:root.white
+                helper_text_color_focus:root.white
+        MDLabel:
+            text:'Confirm Password'
+            theme_text_color: "Custom"
+            font_name: root.encode_sansemi_font
+            font_size:12
+            text_color:root.white
+        MDRelativeLayout:
+            size_hint_y:None
+            height:self.children[0].height
+            MDTextField:
+                text_color_normal:root.white
+                text_color_focus:root.white
+                line_color_focus:root.white
+                line_color_normal:root.white
+        MDLabel:
+            text:"Email"
+            font_name: root.encode_sansemi_font
+            theme_text_color: "Custom"
+            font_size:12
+            text_color:root.white
+        MDRelativeLayout:
+            size_hint_y:None
+            height:self.children[0].height
+            MDTextField:
+                line_color_focus:root.white
+                line_color_normal:root.white
+                text_color_focus:root.white
+                text_color_normal:root.white
+                font_size:14
+                font_name_helper_text:root.sukhumvit_font
+                helper_text_color_normal:root.white
+                helper_text_color_focus:root.white
+    MDRoundFlatButton:
+        text:'Submit'
+        size_hint: None,None
+        -width:root.width*0.5
+        font_size:20
+        pos_hint:{'center_x':0.5,'center_y':0.2}
+        -height:root.height*0.07
+        line_color:root.white
+        text_color:root.white
