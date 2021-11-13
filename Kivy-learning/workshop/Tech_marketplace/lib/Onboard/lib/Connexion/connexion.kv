@@ -1,0 +1,104 @@
+<ConnexionScreen>:
+    MDBoxLayout:
+        id:dot_scroll
+        orientation:'horizontal'
+        adaptive_size:True
+        pos_hint:{'center_x':0.5,'center_y':0.2}
+        MDIcon:
+            rank:0
+            size_hint_x: None
+            -width:20
+            icon:'circle-medium'
+            color:white
+        MDIcon:
+            rank:1
+            size_hint_x: None
+            -width:20
+            icon:'circle-medium'
+            color:white
+            opacity: 0.3
+        MDIcon:
+            rank:2
+            size_hint_x: None
+            -width:20
+            icon:'circle-medium'
+            color:white
+            opacity: 0.3
+        MDIcon:
+            rank:3
+            size_hint_x: None
+            -width:20
+            icon:'circle-medium'
+            color:white
+            opacity: 0.3
+    MDFlatButton:
+        id:next_btn
+        text:"Next"
+        font_size:18
+        text_color:white
+        theme_text_color: "Custom"
+        size_hint:None,None
+        pos_hint:{'center_x':0.5,'center_y':0.1}
+    MDTabs:
+        size_hint_y:0.8
+        pos_hint:{'center_y':0.6}
+        tab_bar_height:0
+        on_tab_switch:root.tab_switch(*args)
+        Tab:
+            title:'0'
+            FitImage:
+                source:'assets/images/Illustration1.png'
+                size_hint:None,None
+                size:334,250
+                pos_hint:{'center_x':0.5,'center_y':0.6}
+            MDLabel:
+                text:'The best tech market'
+                theme_text_color: "Custom"
+                font_size:24
+                text_color:white
+                size_hint_y:None
+                pos_hint:{'center_y':0.15}
+                height:self.texture_size[1]
+                halign:'center'
+        Tab:
+            title:'1'
+            FitImage:
+                source:'assets/images/Illustration2.png'
+                size_hint:None,None
+                size:350,350
+                pos_hint:{'center_x':0.5,'center_y':0.6}
+            MDLabel:
+                text:'A lot of exclusive'
+                theme_text_color: "Custom"
+                font_size:24
+                text_color:white
+                size_hint_y:None
+                pos_hint:{'center_y':0.15}
+                height:self.texture_size[1]
+                halign:'center'
+        Tab:
+            title:'2'
+            FitImage:
+                source:'assets/images/Illustration3.png'
+                size_hint:None,None
+                size:300,300
+                pos_hint:{'center_x':0.6,'center_y':0.6}
+            MDLabel:
+                text:'Sales all the time'
+                theme_text_color: "Custom"
+                font_size:24
+                text_color:white
+                size_hint_y:None
+                pos_hint:{'center_y':0.15}
+                height:self.texture_size[1]
+                halign:'center'
+        Tab:
+            title:'3'
+            ScreenManager:
+                id:account_manager
+                ConnectScreen:
+                    name:'connect_screen'
+                RegisterScreen:
+                    name:'register_screen'
+                LoginScreen:
+                    name:"login_screen"

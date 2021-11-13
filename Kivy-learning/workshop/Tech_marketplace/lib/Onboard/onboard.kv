@@ -1,5 +1,3 @@
-#:set blue hex('#0001FC')
-#:set white 1,1,1,1
 <OnboardScreen>:
     md_bg_color:blue
     ScreenManager:
@@ -29,20 +27,16 @@
                 size_hint:None,None
                 size: '300dp','300dp'
                 pos_hint:{'center_x':0.5,'center_y':0.53}
-            MDBoxLayout:
-                adaptive_size:True
-                pos_hint:{'center_x':0.5,'center_y':0.3}
-                radius:4
+            MDRaisedButton:
+                text:"Let's start"
+                font_size:18
+                text_color:blue
+                theme_text_color: "Custom"
                 md_bg_color:white
-                MDRaisedButton:
-                    text:"Let's start"
-                    font_size:18
-                    text_color:blue
-                    theme_text_color: "Custom"
-                    md_bg_color:0,0,0,0
-                    size_hint:None,None
-                    -width:root.width*0.85
-                    on_press:root.switch_onboard_screen('left',0.2,'screen_2')
+                size_hint:None,None
+                -width:root.width*0.85
+                on_press:root.switch_onboard_screen('left',0.2,'screen_2')
+                pos_hint:{'center_x':0.5,'center_y':0.3}
             MDFlatButton:
                 text:"Skip for now"
                 font_size:18
@@ -50,42 +44,5 @@
                 theme_text_color: "Custom"
                 size_hint:None,None
                 pos_hint:{'center_x':0.5,'center_y':0.15}
-        MDScreen:
+        ConnexionScreen:
             name:'screen_2'
-            MDTabs:
-                size_hint_y:0.7
-                pos_hint:{'center_y':0.6}
-                tab_bar_height:0
-                Tab:
-                    text:'0'
-                    FitImage:
-                        source:'assets/images/Illustration1.png'
-                        size_hint:None,None
-                        size:334,250
-                        pos_hint:{'center_x':0.5,'center_y':0.65}
-                    MDLabel:
-                        text:'The best tech market'
-                        theme_text_color: "Custom"
-                        font_size:24
-                        text_color:white
-                        size_hint_y:None
-                        pos_hint:{'center_y':0.15}
-                        height:self.texture_size[1]
-                        halign:'center'
-                Tab:
-                    text:'1'
-                    FitImage:
-                        source:'assets/images/Illustration2.png'
-                        size_hint:None,None
-                        size:350,350
-                        pos_hint:{'center_x':0.5,'center_y':0.6}
-                    MDLabel:
-                        text:'A lot of exclusive'
-                        theme_text_color: "Custom"
-                        font_size:24
-                        text_color:white
-                        size_hint_y:None
-                        pos_hint:{'center_y':0.15}
-                        height:self.texture_size[1]
-                        halign:'center'
-            

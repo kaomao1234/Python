@@ -1,37 +1,24 @@
-import os
-import importlib
-from kivy.core.window import Window
-from kaki.app import App
 from kivymd.app import MDApp
+import os
+from kivy.core.window import Window
+from kivy.lang import Builder
+from lib.Root.root import Root
+from lib.Onboard.onboard import OnboardScreen
+from lib.component.Tab.tab import Tab
 Window.size = (360, 640)
-class MyApp(App,MDApp):
-    DEBUG=1
-    KV_FILES = {
+path = {
         os.path.join(os.getcwd(),'lib','Root','root.kv'),
         os.path.join(os.getcwd(),'lib','Onboard','onboard.kv'),
-        os.path.join(os.getcwd(),'lib','component','Tab','tab.kv'),
-    }
-    CLASSES = {
-        'Root':'lib.Root.root',
-        'OnboardScreen':'lib.Onboard.onboard',
-        'Tab':'lib.component.Tab.tab'
-    }
-    AUTORELOADER_PATHS=[
-        ('.',{'recursive':True})
-    ]
-    
-    def build_app(self):
+}
+for i in path:
+    Builder.load_file(i)
+class MyApp(MDApp):
+    def __init__(self,**kwargs):
+        super(MyApp, self).__init__(**kwargs)
         self.icon = 'images/Logo.png'
         self.title = 'MyApp'
-        import lib.Root.root
-        Window.bind(on_keyboard=self._rebuild)
-        importlib.reload(lib.Root.root)
-        return lib.Root.root.Root()
     
-    def _rebuild(self,*args):
-        if args[1] == 32:
-            return self.rebuild()
+    def build(self):
+        return Root()
 
-if __name__ == '__main__':
-    MyApp().run()
-    
+MyApp().run()
