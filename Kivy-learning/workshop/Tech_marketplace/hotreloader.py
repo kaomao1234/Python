@@ -10,19 +10,19 @@ class MyApp(App,MDApp):
     KV_FILES = {
         os.path.join(os.getcwd(),'lib','Root','root.kv'),
         os.path.join(os.getcwd(),'lib','Onboard','onboard.kv'),
-        os.path.join(os.getcwd(),'lib','Onboard','lib','Connexion','connexion.kv'),
-        os.path.join(os.getcwd(),'lib','Onboard','lib','Connexion','lib','ConnectScreen','connectscreen.kv'),
-        os.path.join(os.getcwd(),'lib','Onboard','lib','Connexion','lib','RegisterScreen','registerscreen.kv'),
-        os.path.join(os.getcwd(),'lib','Onboard','lib','Connexion','lib','LoginScreen','loginscreen.kv')
+        os.path.join(os.getcwd(),'lib','Connexion','connexion.kv'),
+        os.path.join(os.getcwd(),'lib','ConnectScreen','connectscreen.kv'),
+        os.path.join(os.getcwd(),'lib','RegisterScreen','registerscreen.kv'),
+        os.path.join(os.getcwd(),'lib','LoginScreen','loginscreen.kv')
     }
     CLASSES = {
         'Root':'lib.Root.root',
         'OnboardScreen':'lib.Onboard.onboard',
         'Tab':'lib.component.Tab.tab',
-        'ConnexionScreen':'lib.Onboard.lib.Connexion.connexion',
-        'ConnectScreen':'lib.Onboard.lib.Connexion.lib.ConnectScreen.connectscreen',
-        'RegisterScreen':'lib.Onboard.lib.Connexion.lib.RegisterScreen.registerscreen',
-        'LoginScreen':'lib.Onboard.lib.Connexion.lib.LoginScreen.loginscreen'
+        'ConnexionScreen':'lib.Connexion.connexion',
+        'ConnectScreen':'lib.ConnectScreen.connectscreen',
+        'RegisterScreen':'lib.RegisterScreen.registerscreen',
+        'LoginScreen':'lib.LoginScreen.loginscreen'
     }
     AUTORELOADER_PATHS=[
         ('.',{'recursive':True})
