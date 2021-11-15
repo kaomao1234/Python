@@ -73,7 +73,7 @@ class PreviousMDIcons(Screen):
         self.ids.rv.data = []
         for name_icon in md_icons.keys():
             if search:
-                if text !='' and text[0].lower() == name_icon[0].lower():
+                if text !='' and text.lower()[:len(text)] == name_icon.lower()[:len(text)]:
                     add_icon_item(name_icon)
             else:
                 add_icon_item(name_icon)

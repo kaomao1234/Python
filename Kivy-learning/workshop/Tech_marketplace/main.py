@@ -13,7 +13,7 @@ Window.size = (360, 640)
 path = {
         os.path.join(os.getcwd(),'lib','Root','root.kv'),
         os.path.join(os.getcwd(),'lib','Onboard','onboard.kv'),
-        os.path.join(os.getcwd(),'lib','Connexion','connexion.kv'),
+        os.path.join(os.getcwd(),'lib','Onboard','Connexion','connexion.kv'),
         os.path.join(os.getcwd(),'lib','ConnectScreen','connectscreen.kv'),
         os.path.join(os.getcwd(),'lib','RegisterScreen','registerscreen.kv'),
         os.path.join(os.getcwd(),'lib','LoginScreen','loginscreen.kv')

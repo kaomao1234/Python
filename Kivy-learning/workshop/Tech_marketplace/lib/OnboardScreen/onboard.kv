@@ -44,5 +44,10 @@
                 theme_text_color: "Custom"
                 size_hint:None,None
                 pos_hint:{'center_x':0.5,'center_y':0.15}
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.manager.transition.duration = 0.2
+                    root.manager.current = 'category_screen'
         ConnexionScreen:
             name:'screen_2'
+            onboard:root

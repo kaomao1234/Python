@@ -39,7 +39,9 @@
         theme_text_color: "Custom"
         size_hint:None,None
         pos_hint:{'center_x':0.5,'center_y':0.1}
+        on_press:root.on_press(self)
     MDTabs:
+        id:tabs
         size_hint_y:0.8
         pos_hint:{'center_y':0.6}
         tab_bar_height:0

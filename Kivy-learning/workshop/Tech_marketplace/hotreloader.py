@@ -9,20 +9,26 @@ class MyApp(App,MDApp):
     DEBUG=1
     KV_FILES = {
         os.path.join(os.getcwd(),'lib','Root','root.kv'),
-        os.path.join(os.getcwd(),'lib','Onboard','onboard.kv'),
-        os.path.join(os.getcwd(),'lib','Connexion','connexion.kv'),
-        os.path.join(os.getcwd(),'lib','ConnectScreen','connectscreen.kv'),
-        os.path.join(os.getcwd(),'lib','RegisterScreen','registerscreen.kv'),
-        os.path.join(os.getcwd(),'lib','LoginScreen','loginscreen.kv')
+        os.path.join(os.getcwd(),'lib','OnboardScreen','onboard.kv'),
+        # os.path.join(os.getcwd(),'lib','OnboardScreen','Screens','ConnexionScreen','connexion.kv'),
+        # os.path.join(os.getcwd(),'lib','OnboardScreen','Screens','ConnexionScreen',"Screens",'ConnectScreen','connect.kv'),
+        # os.path.join(os.getcwd(),'lib','OnboardScreen','Screens','ConnexionScreen','Screens','RegisterScreen','register.kv'),
+        # os.path.join(os.getcwd(),'lib','OnboardScreen','Screens','ConnexionScreen','Screens','LoginScreen','login.kv'),
+        os.path.join(os.getcwd(),'lib','CategoryScreen','category.kv'),
+        os.path.join(os.getcwd(),'lib','CategoryScreen','Screens','HomeScreen','home.kv'),
+        
     }
     CLASSES = {
+        'Tab':'component.Tab.tab',
+        'RightContainer':'component.RightContainer.rightcontainer',
         'Root':'lib.Root.root',
-        'OnboardScreen':'lib.Onboard.onboard',
-        'Tab':'lib.component.Tab.tab',
-        'ConnexionScreen':'lib.Connexion.connexion',
-        'ConnectScreen':'lib.ConnectScreen.connectscreen',
-        'RegisterScreen':'lib.RegisterScreen.registerscreen',
-        'LoginScreen':'lib.LoginScreen.loginscreen'
+        'OnboardScreen':'lib.OnboardScreen.onboard',
+        'ConnexionScreen':'lib.OnboardScreen.Screens.ConnexionScreen.connexion',
+        'ConnectScreen':'lib.OnboardScreen.Screens.ConnexionScreen.Screens.ConnectScreen.connect',
+        'RegisterScreen':'lib.OnboardScreen.Screens.ConnexionScreen.Screens.RegisterScreen.register',
+        'LoginScreen':'lib.OnboardScreen.Screens.ConnexionScreen.Screens.LoginScreen.login',
+        "CategoryScreen":'lib.CategoryScreen.category',
+        'HomeScreen':'lib.CategoryScreen.Screens.HomeScreen.home'
     }
     AUTORELOADER_PATHS=[
         ('.',{'recursive':True})

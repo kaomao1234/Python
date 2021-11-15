@@ -1,0 +1,176 @@
+<HomeScreen>:
+    MDScreen:
+        ScrollView:
+            dot_scroll_x:False
+            MDList:
+                padding:[15,10]
+                spacing:20
+                MDLabel:
+                    size_hint_y:None
+                    height:self.texture_size[1]
+                    text:'Home'
+                    font_size:32
+                MDBoxLayout:
+                    adaptive_height:True
+                    orientation:'vertical'
+                    MDTabs:
+                        tab_bar_height:0
+                        size_hint_y:None
+                        height:root.height*0.15
+                        Tab:
+                            title:'0'
+                            md_bg_color:blue
+                            TwoLineListItem:
+                                height:root.height*0.15
+                                text:'Bose Home Speaker'
+                                text_color:white
+                                theme_text_color:'Custom'
+                                secondary_theme_text_color:'Custom'
+                                secondary_text: "USD 279"
+                                secondary_text_color:white
+                                RightContainer:
+                                    AnchorLayout:
+                                        anchor_x: 'right'
+                                        Image:
+                                            source:'assets/images/Bose speaker.png'
+                                            size_hint_x: None
+                    AnchorLayout:
+                        anchor_x: 'center'
+                        size_hint_y:None
+                        height:root.height*0.05
+                        MDBoxLayout:
+                            id:dot_scroll
+                            orientation:'horizontal'
+                            adaptive_size:True
+                            pos_hint:{'center_x':0.5}
+                            MDIcon:
+                                rank:0
+                                size_hint_x: None
+                                -width:20
+                                icon:'circle-medium'
+                                color:hex("#A7A9BE")
+                            MDIcon:
+                                rank:1
+                                size_hint_x: None
+                                -width:20
+                                icon:'circle-medium'
+                                color:hex("#A7A9BE")
+                                opacity: 0.3
+                            MDIcon:
+                                rank:2
+                                size_hint_x: None
+                                -width:20
+                                icon:'circle-medium'
+                                color:hex("#A7A9BE")
+                                opacity: 0.3
+                            MDIcon:
+                                rank:3
+                                size_hint_x: None
+                                -width:20
+                                icon:'circle-medium'
+                                color:hex("#A7A9BE")
+                                opacity: 0.3
+                MDBoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y:None
+                    height:root.height*0.1
+                    MDFloatLayout:
+                        adaptive_height:True
+                        MDIconButton:
+                            size_hint: None, None
+                            icon:'apps'
+                            user_font_size: "25sp"
+                            theme_text_color: "Custom"
+                            text_color:blue
+                            pos_hint:{'center_x':0.5,'center_y':0.4}
+                        Label:
+                            text:'Categories'
+                            markup:True
+                            color:blue
+                            size_hint:None,None
+                            size:self.texture_size
+                            font_size:14
+                            valign:'center'
+                            pos_hint:{'center_x':0.5,'center_y':0.1}
+                    MDFloatLayout:
+                        adaptive_height:True
+                        MDIconButton:
+                            size_hint: None, None
+                            icon:'star-outline'
+                            user_font_size: "25sp"
+                            theme_text_color: "Custom"
+                            text_color:blue
+                            pos_hint:{'center_x':0.5,'center_y':0.4}
+                        Label:
+                            text:'Favorites'
+                            markup:True
+                            color:blue
+                            size_hint:None,None
+                            size:self.texture_size
+                            font_size:14
+                            valign:'center'
+                            pos_hint:{'center_x':0.5,'center_y':0.1}
+                    MDFloatLayout:
+                        adaptive_height:True
+                        MDIconButton:
+                            size_hint: None, None
+                            icon:'cake'
+                            user_font_size: "25sp"
+                            theme_text_color: "Custom"
+                            text_color:blue
+                            pos_hint:{'center_x':0.5,'center_y':0.4}
+                        Label:
+                            text:'Grifts'
+                            markup:True
+                            color:blue
+                            size_hint:None,None
+                            size:self.texture_size
+                            font_size:14
+                            valign:'center'
+                            pos_hint:{'center_x':0.5,'center_y':0.1}
+                    MDFloatLayout:
+                        adaptive_height:True
+                        MDIconButton:
+                            size_hint: None, None
+                            icon:'account-group-outline'
+                            user_font_size: "25sp"
+                            theme_text_color: "Custom"
+                            text_color:blue
+                            pos_hint:{'center_x':0.5,'center_y':0.4}
+                        Label:
+                            text:'Best selling'
+                            markup:True
+                            color:blue
+                            size_hint:None,None
+                            size:self.texture_size
+                            font_size:14
+                            valign:'center'
+                            pos_hint:{'center_x':0.5,'center_y':0.1}
+                Label:
+                    text:'Sales'
+                    font_size:24
+                    size_hint_y: None
+                    markup:True
+                    color:0,0,0,1
+                    height:self.texture_size[1]
+                MDGridLayout:
+                    cols:2
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        Image:
+                            source:'assets/images/Smartphone picture.png'
+                        MDLabel:
+                            text:'Smartphones'
+                            halign:'center'
+                            font_size:18
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        Image:
+                            source:'assets/images/Monitor picture.png'
+                        MDLabel:
+                            text:'Monitors'
+                            halign:'center'
+                            font_size:18
+
+
+            
