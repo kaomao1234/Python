@@ -10,10 +10,10 @@ class MyApp(App,MDApp):
     KV_FILES = {
         os.path.join(os.getcwd(),'lib','Root','root.kv'),
         os.path.join(os.getcwd(),'lib','OnboardScreen','onboard.kv'),
-        # os.path.join(os.getcwd(),'lib','OnboardScreen','Screens','ConnexionScreen','connexion.kv'),
-        # os.path.join(os.getcwd(),'lib','OnboardScreen','Screens','ConnexionScreen',"Screens",'ConnectScreen','connect.kv'),
-        # os.path.join(os.getcwd(),'lib','OnboardScreen','Screens','ConnexionScreen','Screens','RegisterScreen','register.kv'),
-        # os.path.join(os.getcwd(),'lib','OnboardScreen','Screens','ConnexionScreen','Screens','LoginScreen','login.kv'),
+        os.path.join(os.getcwd(),'lib','OnboardScreen','Screens','ConnexionScreen','connexion.kv'),
+        os.path.join(os.getcwd(),'lib','OnboardScreen','Screens','ConnexionScreen',"Screens",'ConnectScreen','connect.kv'),
+        os.path.join(os.getcwd(),'lib','OnboardScreen','Screens','ConnexionScreen','Screens','RegisterScreen','register.kv'),
+        os.path.join(os.getcwd(),'lib','OnboardScreen','Screens','ConnexionScreen','Screens','LoginScreen','login.kv'),
         os.path.join(os.getcwd(),'lib','CategoryScreen','category.kv'),
         os.path.join(os.getcwd(),'lib','CategoryScreen','Screens','HomeScreen','home.kv'),
         

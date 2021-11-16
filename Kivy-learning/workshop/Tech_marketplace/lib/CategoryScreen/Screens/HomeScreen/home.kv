@@ -13,21 +13,29 @@
                 MDBoxLayout:
                     adaptive_height:True
                     orientation:'vertical'
-                    MDTabs:
-                        tab_bar_height:0
-                        size_hint_y:None
+                    ScrollView:
+                        do_scroll_y: False
+                        size_hint_y: None
                         height:root.height*0.15
-                        Tab:
-                            title:'0'
-                            md_bg_color:blue
+                        MDGridLayout:
+                            id: grid
+                            rows: 1
+                            size_hint_y:None
+                            height:root.height*0.15
+                            size_hint_x: None
+                            width: self.minimum_width
                             TwoLineListItem:
                                 height:root.height*0.15
+                                size_hint_x:None
+                                width:root.width*0.95
                                 text:'Bose Home Speaker'
                                 text_color:white
+                                md_bg_color:blue
                                 theme_text_color:'Custom'
                                 secondary_theme_text_color:'Custom'
                                 secondary_text: "USD 279"
                                 secondary_text_color:white
+                                pos_hint:{'center_x':0.5,'center_y':0.5}
                                 RightContainer:
                                     AnchorLayout:
                                         anchor_x: 'right'
@@ -155,22 +163,58 @@
                     height:self.texture_size[1]
                 MDGridLayout:
                     cols:2
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        Image:
-                            source:'assets/images/Smartphone picture.png'
-                        MDLabel:
-                            text:'Smartphones'
-                            halign:'center'
-                            font_size:18
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        Image:
-                            source:'assets/images/Monitor picture.png'
-                        MDLabel:
-                            text:'Monitors'
-                            halign:'center'
-                            font_size:18
-
-
-            
+                    size_hint_y: None
+                    height:root.height*0.5
+                    spacing:20
+                    MDRelativeLayout:
+                        MDFlatButton:
+                            pos_hint:{'center_x':0.5,'center_y':0.5}
+                            size_hint:1, 1
+                        MDBoxLayout:
+                            orientation:'vertical'
+                            MDLabel:
+                                canvas.before:
+                                    Color:
+                                        rgba: hex('#E0ECF8')
+                                
+                                    Rectangle:
+                                        size: self.size[0], self.size[1]
+                                        pos: self.pos
+                                text:'-50%'
+                                font_size:14
+                                theme_text_color:'Custom'
+                                text_color:blue
+                                size_hint: 0.25, 0.2
+                                halign:'center'
+                            Image:
+                                source:'assets/images/Smartphone picture.png'
+                            MDLabel:
+                                text:'Smartphones'
+                                halign:'center'
+                                font_size:18
+                    MDRelativeLayout:
+                        MDFlatButton:
+                            pos_hint:{'center_x':0.5,'center_y':0.5}
+                            size_hint:1, 1
+                        MDBoxLayout:
+                            orientation:'vertical'
+                            MDLabel:
+                                canvas.before:
+                                    Color:
+                                        rgba: hex('#E0ECF8')
+                                
+                                    Rectangle:
+                                        size: self.size[0], self.size[1]
+                                        pos: self.pos
+                                text:'-50%'
+                                font_size:14
+                                theme_text_color:'Custom'
+                                text_color:blue
+                                size_hint: 0.25, 0.2
+                                halign:'center'
+                            Image:
+                                source:'assets/images/Monitor picture.png'
+                            MDLabel:
+                                text:'Monitors'
+                                halign:'center'
+                                font_size:18
