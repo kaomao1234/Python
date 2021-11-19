@@ -1,29 +1,11 @@
 <CategoryScreen>:
-    MDBottomNavigation:
-        panel_color: hex("#EFF5FB")
-        selected_color_background: hex("#0001FC")
-        text_color_normal:0,0,0,1
-        MDBottomNavigationItem:
-            name:'screen_1'
-            icon: 'home-outline'
-            ScreenManager:
-                id:screen_manger
-                HomeScreen:
-                    id:home_screen
-                    name:'home_screen'
-                CategoriesScreen:
-                    id:categories_screen
-                    name:'categories_screen'
-                ProductScreen:
-                    id:product_screen
-                    name:'product_screen'
-        MDBottomNavigationItem:
-            name:'screen_2'
-            icon: 'magnify'
-        MDBottomNavigationItem:
-            name:'screen_3'
-            icon: 'basket-outline'
-        MDBottomNavigationItem:
-            name:'screen_4'
-            icon: 'account-outline'
+    HomeScreen:
+        id:home_screen
+        name:'home_screen'
+    CategoriesScreen:
+        id:categories_screen
+        name:'categories_screen'
+    ProductScreen:
+        id:product_screen
+        name:'product_screen'
 

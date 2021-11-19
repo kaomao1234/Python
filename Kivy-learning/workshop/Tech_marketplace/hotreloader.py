@@ -18,6 +18,7 @@ class MyApp(App,MDApp):
         os.path.join(os.getcwd(),'lib','OnboardScreen','Screens','ConnexionScreen',"Screens",'ConnectScreen','connect.kv'),
         os.path.join(os.getcwd(),'lib','OnboardScreen','Screens','ConnexionScreen','Screens','RegisterScreen','register.kv'),
         os.path.join(os.getcwd(),'lib','OnboardScreen','Screens','ConnexionScreen','Screens','LoginScreen','login.kv'),
+        os.path.join(os.getcwd(),'lib','MainScreen','main.kv'),
         os.path.join(os.getcwd(),'lib','CategoryScreen','category.kv'),
         os.path.join(os.getcwd(),'lib','CategoryScreen','Screens','HomeScreen','home.kv'),
         os.path.join(os.getcwd(),'lib','CategoryScreen','Screens','CategoriesScreen','categories.kv'),
@@ -36,6 +37,7 @@ class MyApp(App,MDApp):
         'ConnectScreen':'lib.OnboardScreen.Screens.ConnexionScreen.Screens.ConnectScreen.connect',
         'RegisterScreen':'lib.OnboardScreen.Screens.ConnexionScreen.Screens.RegisterScreen.register',
         'LoginScreen':'lib.OnboardScreen.Screens.ConnexionScreen.Screens.LoginScreen.login',
+        'MainScreen':'lib.MainScreen.main',
         "CategoryScreen":'lib.CategoryScreen.category',
         'HomeScreen':'lib.CategoryScreen.Screens.HomeScreen.home',
         'CategoriesScreen':'lib.CategoryScreen.Screens.CategoriesScreen.categories',
@@ -48,13 +50,11 @@ class MyApp(App,MDApp):
         super(MyApp, self).__init__(**kwargs)
         self.icon = 'images/Logo.png'
         self.title = 'MyApp'
-        
     def build_app(self):
         import lib.Root.root
         Window.bind(on_keyboard=self._rebuild)
         importlib.reload(lib.Root.root)
         return lib.Root.root.Root()
-
     def _rebuild(self,*args):
         if args[1] == 32:
             return self.rebuild()
