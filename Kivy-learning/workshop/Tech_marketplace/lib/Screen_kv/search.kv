@@ -1,0 +1,98 @@
+<SearchScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        spacing: '20dp'
+        padding: [20,20]
+        Label:
+            text: "Search"
+            color:0,0,0,1
+            markup:True
+            font_size:32
+            size_hint_y: None
+            height:self.texture_size[1]
+            text_size:self.size
+            halign:'left'
+        MDTextFieldRound:
+            hint_text: "What are you looking for ?"
+            icon_left:'magnify'
+            icon_left_color:hex('#1F53E4')
+            hint_text_color:hex('#1F53E4')
+            normal_color:hex('#E0ECF8')
+            text_color:blue
+            color_active:white
+            font_size:16
+            line_color:0,0,0,0
+            on_text:root.on_change_screen(*args)
+        ScreenManager:
+            id:sm
+            MDScreen:
+                name:'screen_1'
+                RecycleView:
+                    id:_lst
+                    viewclass:'ProductCard'
+                    RecycleGridLayout:
+                        cols:2
+                        spacing:10
+                        default_size: None, root.height*.25
+                        default_size_hint: 1, None
+                        size_hint_y: None
+                        height: self.minimum_height
+            MDScreen:
+                name:'screen_2'
+                MDBoxLayout:
+                    orientation:'vertical'
+                    Label:
+                        text: "Last viewed"
+                        color:0,0,0,1
+                        markup:True
+                        font_size:24
+                        size_hint_y:None
+                        height:self.texture_size[1]
+                        text_size:self.size
+                        halign:'left'
+                    ScrollView:
+                        MDList:
+                            spacing:10
+                            size_hint_y: 0.8
+                            TwoLineListItem:
+                                text: "Google Home mini"
+                                secondary_text: "USD 49"
+                                secondary_text_color:hex('#1F53E4')
+                                secondary_theme_text_color:'Custom'
+                            TwoLineListItem:
+                                text: "USB C Charger"
+                                secondary_text: "USD 11"
+                                secondary_text_color:hex('#1F53E4')
+                                secondary_theme_text_color:'Custom'
+                    MDGridLayout:
+                        cols:2
+                        adaptive_height:True
+                        Label:
+                            text: "Lastest search"
+                            color:0,0,0,1
+                            markup:True
+                            font_size:24
+                            height:self.texture_size[1]
+                            text_size:self.size
+                            halign:'left'
+                        MDFlatButton:
+                            text: "Clean all history"
+                            theme_text_color: "Custom"
+                            text_color:hex('#A7A9BE')
+                    ScrollView:
+                        MDList:
+                            spacing:10
+                            OneLineAvatarIconListItem:
+                                text: "Smart speaker"
+                                font_size:16
+                                theme_text_color: "Custom"
+                                text_color:hex('#A7A9BE')
+                                IconRightWidget:
+                                    icon: "close"
+                            OneLineAvatarIconListItem:
+                                text: "USB-C charger"
+                                font_size:16
+                                theme_text_color: "Custom"
+                                text_color:hex('#A7A9BE')
+                                IconRightWidget:
+                                    icon: "close"

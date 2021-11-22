@@ -6,3 +6,6 @@ class ProductCard(MDCard,ButtonBehavior,RecycleDataModelBehavior):
     text = StringProperty('')
     second_text = StringProperty('')
     img_source = StringProperty('')
+    when_click = ObjectProperty()
+    def __init__(self,**kwargs):
+        super(ProductCard, self).__init__(**kwargs)

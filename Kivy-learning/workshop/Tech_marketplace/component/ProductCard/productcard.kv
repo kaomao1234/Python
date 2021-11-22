@@ -3,10 +3,9 @@
     focus_behavior: True
     ripple_behavior: True
     orientation: "vertical"
-    # size_hint:None,None
-    # size:Window.width*.5,Window.height*.23
     adaptive_height:True
     padding:[0,20]
+    on_press:if self.when_click != None :self.when_click(*args)
     elevation:10
     Image:
         source:root.img_source

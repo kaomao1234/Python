@@ -1,0 +1,175 @@
+#:import Snackbar kivymd.uix.snackbar.Snackbar
+<DetailScreen>:
+    MDBoxLayout:
+        orientation:'vertical'
+        spacing:5
+        padding: [10,0]
+        MDIconButton:
+            icon:'arrow-left'
+            user_font_size: "40sp"
+            halign:'left'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.transition.duration = 0.2
+                root.manager.current = 'search_screen'
+        MDLabel:
+            text:root.title
+            text_size:self.size
+            size_hint_y: None
+            height:self.texture_size[1]
+            halign:'left'
+            font_size:24
+        MDBoxLayout:
+            orientation:'vertical'
+            spacing: '10dp'
+            padding: [10,10]
+            MDRelativeLayout:
+                MDLabel:
+                    canvas.before:
+                        Color:
+                            rgba: hex('#E0ECF8')
+                    
+                        Rectangle:
+                            size: self.size[0], self.size[1]
+                            pos: self.pos
+                    text:'New'
+                    font_size:14
+                    theme_text_color:'Custom'
+                    text_color:blue
+                    size_hint: 0.25, 0.2
+                    halign:'center'
+                    pos_hint:{'left':0.1,'y':0.8}
+                MDBoxLayout:
+                    orientation:'vertical'
+                    MDTabs:
+                        tab_bar_height:0
+                        Tab:
+                            Image:
+                                source:'assets/images/Product.png'
+                    MDBoxLayout:
+                        id:dot_scroll
+                        orientation:'horizontal'
+                        adaptive_size:True
+                        height:30
+                        pos_hint:{'center_x':0.5}
+                        MDIcon:
+                            rank:0
+                            size_hint_x: None
+                            -width:20
+                            icon:'circle-medium'
+                            color:hex("#A7A9BE")
+                        MDIcon:
+                            rank:1
+                            size_hint_x: None
+                            -width:20
+                            icon:'circle-medium'
+                            color:hex("#A7A9BE")
+                            opacity: 0.3
+                        MDIcon:
+                            rank:2
+                            size_hint_x: None
+                            -width:20
+                            icon:'circle-medium'
+                            color:hex("#A7A9BE")
+                            opacity: 0.3
+                        MDIcon:
+                            rank:3
+                            size_hint_x: None
+                            -width:20
+                            icon:'circle-medium'
+                            color:hex("#A7A9BE")
+                            opacity: 0.3
+            MDLabel:
+                text:'Color'
+                text_size:self.size
+                size_hint_y: None
+                height:self.texture_size[1]
+                halign:'left'
+                font_size:18
+            MDBoxLayout:
+                orientation: 'horizontal'
+                pos_hint:{'center_x':0.5}
+                adaptive_size:True
+                MDIconButton:
+                    icon:'circle'
+                    _no_ripple_effect: True
+                    text_color:hex('#52514F')
+                    theme_text_color: "Custom"
+                    canvas.before:
+                        Color:
+                            rgba:hex('#0001FC')
+                        Line:
+                            width: 1.5
+                            ellipse: (self.x, self.y, self.width, self.height)
+                    on_press: root.on_color_choose(self,self.canvas.before.children[0])
+                MDIconButton:
+                    icon:'circle'
+                    text_color:hex('EBEBE4')
+                    _no_ripple_effect: True
+                    theme_text_color: "Custom"
+                    on_press: root.on_color_choose(self,self.canvas.before.children[0])
+                    canvas.before:
+                        Color:
+                            rgba:0,0,0,0
+                        Line:
+                            width: 1.5
+                            ellipse: (self.x, self.y, self.width, self.height)
+                MDIconButton:
+                    icon:'circle'
+                    text_color:hex('#6F7972')
+                    _no_ripple_effect: True
+                    theme_text_color: "Custom"
+                    on_press: root.on_color_choose(self,self.canvas.before.children[0])
+                    canvas.before:
+                        Color:
+                            rgba:0,0,0,0
+                        Line:
+                            width: 1.5
+                            ellipse: (self.x, self.y, self.width, self.height)
+                MDIconButton:
+                    icon:'circle'
+                    text_color:hex('#F5D8C0')
+                    _no_ripple_effect: True
+                    theme_text_color: "Custom"
+                    on_press: root.on_color_choose(self,self.canvas.before.children[0])
+                    canvas.before:
+                        Color:
+                            id:color_id
+                            rgba:0,0,0,0
+                        Line:
+                            width: 1.5
+                            ellipse: (self.x, self.y, self.width, self.height)
+            MDLabel:
+                text:'Capacity'
+                text_size:self.size
+                size_hint_y: None
+                height:self.texture_size[1]
+                halign:'left'
+                font_size:18
+            MDBoxLayout:
+                orientation: 'horizontal'
+                adaptive_size:True
+                pos_hint:{'center_x':0.5}
+                MDFlatButton:
+                    text: "64 gb"
+                    theme_text_color: "Custom"
+                    text_color: hex('#0001FC')
+                    on_press: root.on_cap_choose(self.parent,self)
+                MDFlatButton:
+                    text: "256 gb"
+                    theme_text_color: "Custom"
+                    text_color: hex('#A7A9BE')
+                    on_press: root.on_cap_choose(self.parent,self)
+                MDFlatButton:
+                    text: "512 gb"
+                    theme_text_color: "Custom"
+                    text_color: hex('#A7A9BE')
+                    on_press: root.on_cap_choose(self.parent,self)
+            MDRaisedButton:
+                text:'Add to cart'
+                md_bg_color: hex('#1F53E4')
+                size_hint: None, None
+                -width:root.width*.89
+                -height:root.height*.08
+                font_size: "18sp"
+                on_press: Snackbar(text= 'Product added to cart !').open()

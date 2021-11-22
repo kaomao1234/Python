@@ -1,0 +1,47 @@
+<ProductScreen>:
+    MDBoxLayout:
+        orientation:'vertical'
+        padding:[10,0]
+        spacing:10
+        MDIconButton:
+            icon:'arrow-left'
+            user_font_size: "40sp"
+            halign:'left'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.transition.duration = 0.2
+                root.manager.current = 'categories_screen'
+        MDLabel:
+            text:root.title
+            text_size:self.size
+            size_hint_y: None
+            height:self.texture_size[1]
+            halign:'left'
+            font_size:24
+        MDBoxLayout:
+            orientation:'horizontal'
+            adaptive_height:True
+            spacing:10
+            MDRectangleFlatButton:
+                text: "Ascending Price"
+                theme_text_color: "Custom"
+                text_color: hex('#A7A9BE')
+                line_color: hex('#A7A9BE')
+                font_size:14
+                -width:root.width*0.5
+            MDFlatButton:
+                text: "Filter"
+                theme_text_color: "Custom"
+                text_color:hex('#A7A9BE')
+                font_size:14
+                -width:root.width*0.5
+        RecycleView:
+            id:_lst
+            viewclass:'ProductCard'
+            RecycleGridLayout:
+                cols:2
+                spacing:10
+                default_size: None, root.height*.25
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
