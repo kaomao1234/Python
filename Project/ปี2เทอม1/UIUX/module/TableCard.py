@@ -73,6 +73,7 @@ class TableCard(MDBoxLayout, RecycleDataViewBehavior):
         self.count_label: MDLabel = self.ids.count_cus
 
     def refresh_view_attrs(self, rv, index, data):
+        # print(index)
         self.update()
         return super(TableCard, self).refresh_view_attrs(rv, index, data)
 
