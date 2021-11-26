@@ -5,7 +5,7 @@ from tkinter import *
 class TextBar(ttk.Frame):
     def __init__(self, controller, master):
         super().__init__(master=master)
-        self.textArea = Text(self)
+        self.textArea = Text(self,undo=True,wrap='none')
         self.scrollTextVertical = ttk.Scrollbar(
             self, command=self.textArea.yview)
         self.scrollTextHorizontal = ttk.Scrollbar(
