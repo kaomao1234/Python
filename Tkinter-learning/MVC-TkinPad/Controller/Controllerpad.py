@@ -13,7 +13,7 @@ class Controllerpad(Tk):
         self.file_model = FileModel(self)
         self.edit_model = EditModel(self)
         self.format_model = FormatModel(self)
-    
+        self.geometry("500x500")    
     def run(self):
         self.mainFrame.pack()
         self.mainloop()

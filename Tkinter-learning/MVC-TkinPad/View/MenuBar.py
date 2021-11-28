@@ -77,6 +77,8 @@ class MenuBar(ttk.Frame):
         format_model = self.controller.format_model
         check_btn_var =BooleanVar()
         self.format_menu.add_checkbutton(label='Word Wrap',variable=check_btn_var,command = partial(format_model.wrap_text,check_btn_var))
+        self.format_menu.add_command(
+            label='Font...',command=format_model.fontText)
 
     def view_menu_config(self):
         self.view_menu.add_checkbutton(label='Status bar')
