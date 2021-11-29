@@ -1,6 +1,7 @@
 import ttkbootstrap as ttk
 from tkinter import *
 from functools import partial
+from Model.HelpModel import HelpModel
 
 
 class MenuBar(ttk.Frame):
@@ -81,12 +82,14 @@ class MenuBar(ttk.Frame):
             label='Font...',command=format_model.fontText)
 
     def view_menu_config(self):
-        self.view_menu.add_checkbutton(label='Status bar')
+        view_model = self.controller.view_model
+        check_btn_var = BooleanVar()
+        self.view_menu.add_checkbutton(label='Status bar',variable=check_btn_var,command=partial(view_model.wrap_status,check_btn_var))
 
     def help_menu_config(self):
         self.help_menu.add_separator()
         self.help_menu.add_command(
-            label='About')
+            label='About',command=partial(HelpModel,self.controller))
 
     def pack(self):
         self.setter_attrb()

@@ -8,7 +8,7 @@ from functools import partial
 class FormatModel:
     def __init__(self, controller):
         self.controller = controller
-        self.defaultFont = {'font': 'consolas', 'size': 13, 'style': 'normal'}
+        self.defaultFont = self.controller.mainFrame.textBar.defaultFont
         self.textArea: Text = self.controller.mainFrame.textBar.textArea
         self.pop_up = Toplevel(controller)
         self.pop_up.wm_withdraw()
@@ -57,7 +57,7 @@ class FormatModel:
     def autoScroll_move(self, instance, e):
         rangeScroll = 0.003389830508474576
         text = instance.selectVar.get()
-        if text.isdigit():
+        if text.isdigit() and instance.tree.winfo_name() == 'size':
             self.defaultFont.update({'size': int(text)})
             self.text.configure(font=tuple(self.defaultFont.values()))
         try:
