@@ -6,4 +6,3 @@ class IncognitoChat(MDApp):
 
 if __name__ == '__main__':
     IncognitoChat().run()
-    
