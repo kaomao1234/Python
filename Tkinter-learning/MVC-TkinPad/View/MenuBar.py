@@ -9,15 +9,15 @@ class MenuBar(ttk.Frame):
         super().__init__(master=master)
         self.controller = controller
         self.file_btn = ttk.Menubutton(
-            self, text='File', bootstyle='outline-primary')
+            self, text='File', bootstyle='primary-outline')
         self.edit_btn = ttk.Menubutton(
-            self, text='Edit', bootstyle='outline-primary')
+            self, text='Edit', bootstyle='primary-outline')
         self.format_btn = ttk.Menubutton(
-            self, text='Format', bootstyle='outline-primary')
+            self, text='Format', bootstyle='primary-outline')
         self.view_btn = ttk.Menubutton(
-            self, text='View', bootstyle='outline-primary')
+            self, text='View', bootstyle='primary-outline')
         self.help_btn = ttk.Menubutton(
-            self, text='Help', bootstyle='outline-primary')
+            self, text='Help', bootstyle='primary-outline')
         self.file_menu = Menu(self.file_btn, tearoff=0)
         self.edit_menu = Menu(self.edit_btn, tearoff=0)
         self.format_menu = Menu(self.format_btn, tearoff=0)

@@ -31,7 +31,7 @@ class TextBar(ttk.Frame):
         self.textArea.bind_class(
             'post-class-bindings', '<Button-1>', self.controller.on_cursor_active)
         self.textArea.bind_class(
-            'post-class-bindings', '<Control-MouseWheel>', partial(self.controller.wheelFont_size,self))
+            'post-class-bindings', '<Control-MouseWheel>', partial(self.controller.wheelFont_size, self))
         self.textArea.bind_class(
             'post-class-bindings', '<Button-3>', self.rightmenu_squence)
         self.textArea.bind_class(
@@ -52,7 +52,7 @@ class TextBar(ttk.Frame):
             label="Paste", accelerator='Ctrl+V', command=partial(self.textArea.event_generate, '<<Paste>>'))
         self.right_menu.add_command(
             label="Delete", command=partial(self.textArea.event_generate, '<Delete>'))
-        
+
     def pack(self):
         self.right_menu_config()
         self.bindMethod()
