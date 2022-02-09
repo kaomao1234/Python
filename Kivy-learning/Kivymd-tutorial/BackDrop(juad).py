@@ -1,3 +1,5 @@
+import os
+os.environ['KIVY_GL_BACKEND'] = 'angle_sdl2'
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivymd.uix.floatlayout import MDFloatLayout

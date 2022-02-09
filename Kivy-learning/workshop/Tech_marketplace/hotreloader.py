@@ -1,5 +1,7 @@
 import os
+os.environ['KIVY_GL_BACKEND'] = 'angle_sdl2'
 import importlib
+import kivy
 from kivy.core.window import Window
 from kaki.app import App
 from kivymd.app import MDApp

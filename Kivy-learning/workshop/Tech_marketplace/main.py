@@ -1,10 +1,9 @@
 from kivymd.app import MDApp
-import os
 from kivy.core.window import Window
 from kivy.lang import Builder
-from lib.Root.root import Root
-from lib.Onboard.onboard import OnboardScreen
-from lib.component.Tab.tab import Tab
+from lib.Screen_py.root import Root
+from lib.Screen_py.onboard import OnboardScreen
+from component.Tab.tab import Tab
 from lib.Connexion.connexion import ConnexionScreen
 from lib.ConnectScreen.connectscreen import ConnectScreen
 from lib.RegisterScreen.registerscreen import RegisterScreen
