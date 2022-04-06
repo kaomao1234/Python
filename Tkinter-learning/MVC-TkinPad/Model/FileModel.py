@@ -8,7 +8,7 @@ import os
 class FileModel:
     def __init__(self, controller):
         self.controller = controller
-        self.textArea: Text = self.controller.mainFrame.textBar.textArea
+        self.textArea: Text = self.controller.baseFrame.textBar.textArea
 
     def new_file(self):
         if self.controller.wm_title() != 'Untitle - TkNotepad' and self.textArea.get('1.0', 'end') == '\n':

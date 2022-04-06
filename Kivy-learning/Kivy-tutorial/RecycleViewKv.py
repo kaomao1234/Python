@@ -49,6 +49,7 @@ class ExampleViewer(RecycleView):
                      for x in range(10)]
 
     def getInstance(self, m=None):
+        self.data.append({'text': str(len(self.data)), 'm': self.getInstance})
         return m
 # Create the App class with name of your app.
 

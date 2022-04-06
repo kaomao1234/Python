@@ -8,8 +8,8 @@ from functools import partial
 class FormatModel:
     def __init__(self, controller):
         self.controller = controller
-        self.defaultFont = self.controller.mainFrame.textBar.defaultFont
-        self.textArea: Text = self.controller.mainFrame.textBar.textArea
+        self.defaultFont = self.controller.baseFrame.textBar.defaultFont
+        self.textArea: Text = self.controller.baseFrame.textBar.textArea
         self.pop_up = Toplevel(controller)
         self.pop_up.wm_withdraw()
         self.pop_up.protocol("WM_DELETE_WINDOW", self.close)

@@ -4,7 +4,7 @@ from View.TextBar import TextBar
 from View.StatusBar import StatusBar
 from View.MenuBar import MenuBar
 
-class MainFrame(ttk.Frame):
+class BaseFrame(ttk.Frame):
     def __init__(self,controller,style):
         super().__init__(master=controller)
         self.controller = controller

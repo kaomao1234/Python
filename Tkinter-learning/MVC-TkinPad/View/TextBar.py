@@ -15,7 +15,7 @@ class TextBar(ttk.Frame):
             self, command=self.textArea.yview)
         self.scrollTextHorizontal = ttk.Scrollbar(
             self, orient='horizontal', command=self.textArea.xview)
-        self.right_menu = Menu(tearoff=0)
+        self.rightMenu = Menu(tearoff=0)
         self.config()
 
     def config(self):
@@ -33,28 +33,28 @@ class TextBar(ttk.Frame):
         self.textArea.bind_class(
             'post-class-bindings', '<Control-MouseWheel>', partial(self.controller.wheelFont_size, self))
         self.textArea.bind_class(
-            'post-class-bindings', '<Button-3>', self.rightmenu_squence)
+            'post-class-bindings', '<Button-3>', self.onRightClick)
         self.textArea.bind_class(
             'post-class-bindings', '<B1-Motion>', self.controller.on_cursor_active)
 
-    def rightmenu_squence(self, event):
+    def onRightClick(self, event):
         try:
-            self.right_menu.tk_popup(event.x_root, event.y_root)
+            self.rightMenu.tk_popup(event.x_root, event.y_root)
         finally:
-            self.right_menu.grab_release()
+            self.rightMenu.grab_release()
 
-    def right_menu_config(self):
-        self.right_menu.add_command(
+    def configRightMenu(self):
+        self.rightMenu.add_command(
             label="Cut", accelerator='Ctrl+X', command=partial(self.textArea.event_generate, '<<Cut>>'))
-        self.right_menu.add_command(
+        self.rightMenu.add_command(
             label="Copy", accelerator='Ctrl+C', command=partial(self.textArea.event_generate, '<<Copy>>'))
-        self.right_menu.add_command(
+        self.rightMenu.add_command(
             label="Paste", accelerator='Ctrl+V', command=partial(self.textArea.event_generate, '<<Paste>>'))
-        self.right_menu.add_command(
+        self.rightMenu.add_command(
             label="Delete", command=partial(self.textArea.event_generate, '<Delete>'))
 
     def pack(self):
-        self.right_menu_config()
+        self.configRightMenu()
         self.bindMethod()
         super().pack(fill='both', expand=1)
         self.columnconfigure(0, weight=1)

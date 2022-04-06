@@ -8,7 +8,7 @@ from tkinter import messagebox
 class EditModel:
     def __init__(self, controller):
         self.controller = controller
-        self.textArea: Text = self.controller.mainFrame.textBar.textArea
+        self.textArea: Text = self.controller.baseFrame.textBar.textArea
         self.tagIdx_list = []
 
     def stamp_time(self):

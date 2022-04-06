@@ -8,7 +8,7 @@ from kivy.lang.builder import Builder
 KV = """
 <RecycleItem>:
     on_text: if root.owner != None: self.owner.data[self.index]['text'] = self.text
-    on_press:self.text='True'
+    on_press:self.press()
 
 RecycleView:
     data: app.data
@@ -30,6 +30,9 @@ class RecycleItem(RecycleDataViewBehavior,Button):
         self.index = index
         print("INDEXXXXXX: ",self.index)
         return super(RecycleItem, self).refresh_view_attrs(rv, index, data)
+    def press(self):
+        # print(self.owner.data)
+        self.owner.data.append({'text':str(len(self.owner.data)),'owner':self.owner})
 
 class Test(App):
     data = ListProperty()

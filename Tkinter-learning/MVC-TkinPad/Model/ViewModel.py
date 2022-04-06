@@ -6,7 +6,7 @@ class ViewModel:
         self.controller = controller
     
     def wrap_status(self,var):
-        statusBar = self.controller.mainFrame.statusBar
+        statusBar = self.controller.baseFrame.statusBar
         if var.get():
             statusBar.pack_forget()
         else:

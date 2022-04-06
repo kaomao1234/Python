@@ -1,6 +1,6 @@
 import ttkbootstrap as ttk
 from tkinter import *
-from View.MainScreenView import MainFrame
+from View.BaseView import BaseFrame
 from Model.FileModel import FileModel
 from Model.EditModel import EditModel
 from Model.FormatModel import FormatModel
@@ -12,21 +12,21 @@ class Controllerpad(Tk):
         super().__init__()
         self.title('Tkinpad')
         style = ttk.Style()
-        self.mainFrame = MainFrame(self, style)
-        self.file_model = FileModel(self)
-        self.edit_model = EditModel(self)
-        self.format_model = FormatModel(self)
-        self.view_model = ViewModel(self)
+        self.baseFrame = BaseFrame(self, style)
+        self.fileModel = FileModel(self)
+        self.editModel = EditModel(self)
+        self.formatModel = FormatModel(self)
+        self.viewModel = ViewModel(self)
         self.geometry("500x500")
         self.bind("<Configure>", self.configSize)
 
     def run(self):
-        self.mainFrame.pack()
+        self.baseFrame.pack()
         self.mainloop()
 
     def on_cursor_active(self, e):
-        textArea = self.mainFrame.textBar.textArea
-        statusLabel = self.mainFrame.statusBar.ln_col
+        textArea = self.baseFrame.textBar.textArea
+        statusLabel = self.baseFrame.statusBar.ln_col
         pos = textArea.index(INSERT).split('.')
         statusLabel.configure(text=f'Ln {pos[0]} ,Col {int(pos[1])+1}')
 
@@ -43,7 +43,7 @@ class Controllerpad(Tk):
         instance.textArea.configure(font=tuple(font.values()))
 
     def configSize(self, e):
-        textFrame = self.mainFrame.textBar.textFrame
-        textArea = self.mainFrame.textBar.textArea
+        textFrame = self.baseFrame.textBar.textFrame
+        textArea = self.baseFrame.textBar.textArea
         textArea.place_configure(
             width=textFrame.winfo_width(), height=textFrame.winfo_height())
