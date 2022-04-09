@@ -1,0 +1,20 @@
+<IntroScreen>:
+    MDLabel:
+        text: "TalkTalker"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: hex('#2F80ED')
+        font_size: dp(25)
+        opacity: 0.8
+        pos_hint: {'center_x': 0.2,'center_y': 0.5}
+        font_name: 'Assets/fonts/Nunito/Nunito-VariableFont_wght.ttf'
+    MDRectangleFlatButton:
+        text: "Get Started"
+        theme_text_color: "Custom"
+        text_color: hex("#FFFAFA")
+        line_color: hex("#FFFAFA")
+        pos_hint: {'center_x': 0.75,'center_y': 0.1}
+        -height: dp(40)
+        font_size: dp(15)
+        on_press:
+            root.manager.current = 'login_screen'
