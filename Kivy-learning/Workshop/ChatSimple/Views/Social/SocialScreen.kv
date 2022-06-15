@@ -1,6 +1,5 @@
 <SocialScreen>:
     MDBottomNavigation:
-        panel_color: hex("#ffffff")
         text_color_active: 0, 0, 0, 1
         use_text: False 
         text_color_normal:[0.1843137254901961, 0.5019607843137255, 0.9294117647058824,0.5]
@@ -11,25 +10,22 @@
             badge_icon: "numeric-10"
             MDBoxLayout:
                 orientation: 'vertical'
-                md_bg_color:hex("#ffffff")
+                md_bg_color:hex('#ECECEC')
                 MDToolbar:
                     title: "Public"
                     md_bg_color: hex("#2F80ED")
                     type_height:'small'
-                MDLabel:
-                    text: "Social"
-                    halign: 'center'
-                    theme_text_color: 'Primary'
-                    font_style: 'H6'
-            AnchorLayout:
-                anchor_x: 'right'
-                anchor_y: 'top'
-                padding: dp(20),dp(10)
-                MDSwitch:
-                    theme_thumb_color: 'Custom'
-                    theme_thumb_down_color: 'Custom'
-                    thumb_color: hex("#ffffff")
-                    thumb_color_down: hex("#ffffff")
+                RecycleView:
+                    id:rv
+                    viewclass:'PostBox'
+                    RecycleBoxLayout:
+                        default_size: None,None
+                        default_size_hint: 1, None
+                        size_hint_y: None
+                        spacing: dp(10)
+                        padding:[dp(10),dp(10)]
+                        heigth: self.minimum_height
+                        orientation: 'vertical'
             AnchorLayout:
                 anchor_x: 'right'
                 anchor_y: 'bottom'
@@ -40,7 +36,6 @@
                     icon_size: dp(30)
                     icon_color:hex("#FFFAFA")
                     md_bg_color:hex("#2F80ED")
-
         MDBottomNavigationItem:
             name: 'screen 2'
             icon: 'bell-outline'
