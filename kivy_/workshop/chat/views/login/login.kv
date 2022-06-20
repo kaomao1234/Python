@@ -1,0 +1,27 @@
+<Login>:
+    BoxLayout:
+        orientation: 'vertical'
+        GridLayout:
+            cols: 2
+            rows: 2
+            Label:
+                text: 'Username'
+            TextInput:
+                id: username
+                multiline: False
+                on_text: root.username_validation(self,self.text)
+            Label:
+                text: 'Password'
+            TextInput:
+                id: password
+                multiline: False
+                password: True
+                on_text:root.insert_text(self,self.text)
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            Button:
+                text: 'Login'
+                size_hint: 0.3, 0.3
+                on_press:root.on_press()
+
