@@ -3,24 +3,52 @@ from kivy.lang import Builder
 kv = '''
 MDScreen:
     Carousel:
-        direction: 'top'
+        direction: 'right'
         MDLabel:
             text: 'Hello'
         MDLabel:
             text: 'Hello'
         MDLabel:
             text: 'Hello'
-        GridLayout:
-            rows:1
-            ScrollView:
-                MDList:
-                    MDLabel:
-                        text: 'HelloList'
-                    MDLabel:
-                        text: 'HelloList'
-                    MDLabel:
-                        text: 'HelloList'
-'''
+        Carousel:
+            direction: 'bottom'
+            MDLabel:
+                text: 'HelloList1'
+            MDLabel:
+                text: 'HelloList2'
+            MDLabel:
+                text: 'HelloList3'
+            MDLabel:
+                text: 'HelloList4'
+            MDLabel:
+                text: 'HelloList5'
+            MDLabel:
+                text: 'HelloList6'
+            MDLabel:
+                text: 'HelloList7'
+            MDLabel:
+                text: 'HelloList8'
+            MDLabel:
+                text: 'HelloList9'
+            MDLabel:
+                text: 'HelloList1'
+            MDLabel:
+                text: 'HelloList2'
+            MDLabel:
+                text: 'HelloList3'
+            MDLabel:
+                text: 'HelloList4'
+            MDLabel:
+                text: 'HelloList5'
+            MDLabel:
+                text: 'HelloList6'
+            MDLabel:
+                text: 'HelloList7'
+            MDLabel:
+                text: 'HelloList8'
+            MDLabel:
+                text: 'HelloList9'
+    '''
 
 
 class MyApp(MDApp):
