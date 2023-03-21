@@ -1,0 +1,68 @@
+<ConnectScreen>:
+    MDLabel:
+        text:'Connexion'
+        theme_text_color: "Custom"
+        font_size:24
+        text_color:white
+        size_hint_y:None
+        pos_hint:{'center_y':0.9}
+        height:self.texture_size[1]
+        halign:'center'
+    MDRaisedButton:
+        text:"Create an account"
+        font_size:18
+        text_color:blue
+        theme_text_color: "Custom"
+        md_bg_color:white
+        size_hint:None,None
+        -width:root.width*0.85
+        -height:53
+        pos_hint:{'center_x':0.5,'center_y':0.5}
+        on_press:
+            root.manager.transition.direction = 'left'
+            root.manager.transition.duration = 0.2
+            root.manager.current = 'register_screen'
+    MDRectangleFlatIconButton:
+        icon: "google"
+        text: "Connect with Google"
+        icon_color:white
+        theme_text_color: "Custom"
+        text_color: white
+        font_size:18
+        line_color: red
+        size_hint: 0.85,0.1
+        pos_hint:{'center_x':0.5,'center_y':0.35}
+        canvas.before:
+            Color:
+                rgb:red
+            Rectangle:
+                pos:self.pos
+                size:self.size
+    MDRectangleFlatIconButton:
+        icon: "facebook"
+        text: "Connect with Facebook"
+        icon_color:white
+        theme_text_color: "Custom"
+        text_color: white
+        font_size:18
+        line_color: fb_color
+        size_hint: 0.85,0.1
+        pos_hint:{'center_x':0.5,'center_y':0.22}
+        canvas.before:
+            Color:
+                rgb:fb_color
+            Rectangle:
+                pos:self.pos
+                size:self.size
+    MDFlatButton:
+        text:'Already have an account ? Login'
+        font_size:18
+        size_hint_y: None
+        theme_text_color: "Custom"
+        halign:'center'
+        text_color:yellow
+        pos_hint:{'center_x':0.5,'center_y':0.1}
+        on_press:
+            root.manager.transition.direction = 'left'
+            root.manager.transition.duration = 0.2
+            root.manager.current = 'login_screen'

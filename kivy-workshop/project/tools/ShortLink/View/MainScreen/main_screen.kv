@@ -1,0 +1,29 @@
+<MainScreenView>:
+    MDBoxLayout:
+        orientation:"vertical"
+        MDBoxLayout:
+            adaptive_height:True
+            orientation:"horizontal"
+            spacing:dp(10)
+            MDTextButton:
+                id:hotreload_btn
+                text:"Hot reload"
+                font_size:16
+                padding:[5,10]
+                on_press:
+                    print("press build")
+                    app.rebuild()
+            MDTextButton:
+                text:"Reload"
+                font_size:16
+                padding:[5,10]
+                on_press:
+                    print("restart app")
+                    app.restart_app()
+        MDSeparator:
+            color:[0,0,0,1]
+        MDLabel:
+            text_color:[0,0,0,1]
+            theme_text_color:'Custom'
+            text:"hello"
+            halign:'center'

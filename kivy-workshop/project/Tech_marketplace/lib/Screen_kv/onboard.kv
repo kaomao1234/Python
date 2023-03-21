@@ -1,0 +1,53 @@
+<OnboardScreen>:
+    md_bg_color:blue
+    ScreenManager:
+        id:onboard_manager
+        MDScreen:
+            name:'screen_1'
+            MDLabel:
+                text:'LATECH'
+                theme_text_color: "Custom"
+                font_size:42
+                text_color:white
+                size_hint_y:None
+                pos_hint:{'center_y':0.8}
+                height:self.texture_size[1]
+                halign:'center'
+            MDLabel:
+                text:'TECH MARKET'
+                theme_text_color: "Custom"
+                font_size:12
+                text_color:white
+                size_hint_y:None
+                pos_hint:{'center_y':0.76}
+                height:self.texture_size[1]
+                halign:'center'
+            FitImage:
+                source:'assets/images/Logo.png'
+                size_hint:None,None
+                size: '300dp','300dp'
+                pos_hint:{'center_x':0.5,'center_y':0.53}
+            MDRaisedButton:
+                text:"Let's start"
+                font_size:18
+                text_color:blue
+                theme_text_color: "Custom"
+                md_bg_color:white
+                size_hint:None,None
+                -width:root.width*0.85
+                on_press:root.switch_onboard_screen('left',0.2,'screen_2')
+                pos_hint:{'center_x':0.5,'center_y':0.3}
+            MDFlatButton:
+                text:"Skip for now"
+                font_size:18
+                text_color:white
+                theme_text_color: "Custom"
+                size_hint:None,None
+                pos_hint:{'center_x':0.5,'center_y':0.15}
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.manager.transition.duration = 0.2
+                    root.manager.current = 'main_screen'
+        ConnexionScreen:
+            name:'screen_2'
+            onboard:root

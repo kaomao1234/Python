@@ -1,0 +1,31 @@
+#: import Window kivy.core.window.Window
+<ProductCard>:
+    focus_behavior: True
+    ripple_behavior: True
+    orientation: "vertical"
+    adaptive_height:True
+    padding:[0,20]
+    on_press:if self.when_click != None :self.when_click(*args)
+    elevation:10
+    Image:
+        source:root.img_source
+        size_hint:0.6,0.6
+        pos_hint: {"center_x": .5}
+    Label:
+        text:root.text
+        padding_x:15
+        text_size:self.size
+        font_size: 16
+        markup:True
+        color:0,0,0,1
+        size_hint_y: None
+        height:self.texture_size[1]
+    Label:
+        text:root.second_text
+        markup:True
+        padding_x:15
+        text_size:self.size
+        font_size: 12
+        color:blue
+        size_hint_y: None
+        height:self.texture_size[1]

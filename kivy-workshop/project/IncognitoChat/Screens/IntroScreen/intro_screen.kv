@@ -1,0 +1,31 @@
+#: import hex kivy.utils.get_color_from_hex
+<IntroScreen>:
+    white:hex("#FAFAFA")
+    sukhumvit_font:'assets/fonts/SukhumvitSet-Medium.ttf'
+    barlow_font:'assets/fonts/Barlow/Barlow-Black.ttf'
+    encode_sansemi_font:'assets/fonts/Encode_Sans_Semi_Expanded/EncodeSansSemiExpanded-SemiBold.ttf'
+    Image:
+        id:bg
+        source:'assets/images/Logo.png'
+        pos_hint: {"center_x":0.5,"center_y":-0.7}
+    MDLabel:
+        id:title
+        text:"IncognitoChat"
+        halign: "center"
+        size_hint_y: None
+        pos_hint:{'center_x':0.5,'center_y':-0.5}
+        theme_text_color: "Custom"
+        font_size:"36dp"
+        text_color: root.white
+        font_name:root.encode_sansemi_font
+    MDRoundFlatButton:
+        id:start_btn
+        text:'Start'
+        size_hint_x:0.6
+        pos_hint:{'center_x':0.5,'center_y':-0.3}
+        font_name: root.barlow_font
+        font_size: 16
+        text_color:root.white
+        line_color: root.white
+        on_press:root.on_screen()
+            

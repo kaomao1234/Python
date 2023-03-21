@@ -1,0 +1,22 @@
+<HomeScreen>:
+    MDBoxLayout:
+        orientation:'vertical'
+        RecycleView:
+            id:rv
+            bar_width: 0
+            bar_color: 0,0,0,0
+            viewclass:'Button'
+            RecycleBoxLayout:
+                default_size:None,None
+                default_size_hint:1,None
+                orientation:'vertical'
+                size_hint_y:None
+                spacing:dp(5)
+                height:self.minimum_height
+        MDBottomAppBar:
+            MDTopAppBar:
+                icon: "magnify"
+                type: "bottom"
+                elevation:0
+                on_action_button:
+                    root.manager.current = "search_screen"

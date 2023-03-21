@@ -1,0 +1,28 @@
+#: import get_color_from_hex kivy.utils.get_color_from_hex
+#:import Window kivy.core.window.Window
+<MainScreen@ScreenManager>
+    Screen:
+        name:'on_board_screen'
+        id:on_board
+        MDFloatLayout:
+            canvas:
+                Color:
+                    rgba:get_color_from_hex("#9b4f4f")
+                Rectangle:
+                    size:self.size
+            AnchorLayout:
+                anchor_y:'top'
+                FitImage:
+                    size_hint_x:None
+                    width:450
+                    id:bg_img
+                    source:"Rose_Vale_Flowers_Soft_Organic_Fashion_Logo.png"
+        MDBoxLayout:
+            id:backdrop_widget
+            orientation:'vertical'
+            y:-1000
+            size_hint_y:0.5
+            radius:[dp(30),dp(30),dp(0),dp(0)]
+            md_bg_color:root.white
+            ScreenManager:
+                id:s_drop_manager

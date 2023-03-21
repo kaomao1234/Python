@@ -1,0 +1,26 @@
+<LoginScreen>:
+    MDBoxLayout:
+        spacing: '10dp'
+        pos_hint: {'center_x': .5, 'center_y': .4}
+        size_hint: None, None
+        size: dp(300),dp(100)
+        orientation: 'vertical'
+        MDLabel:
+            text: "Name"
+            font_size:dp(30)
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: "#2F80ED"
+            font_name: 'Assets/fonts/Nunito/Nunito-VariableFont_wght.ttf'
+        MDTextField:
+            valign:"middle"
+            halign:"center"
+        MDRectangleFlatButton:
+            text: "Enter"
+            theme_text_color: "Custom"
+            pos_hint: {'center_x': .5}
+            -height: dp(40)
+            font_size: dp(15)
+            -width: dp(100)
+            on_press:
+                root.manager.current = 'social_screen'

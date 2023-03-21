@@ -1,0 +1,13 @@
+UI/UX:
+Login Page
+	Username(Input)
+	Password(Input)
+	Sign in(Button)
+	Sign up(Button)
+	Forgot Password(Button)
+Sign up Page
+	Username(Input)
+	Email(Input)
+	Password(Input)
+	Confirm Password(Input)
+	Confirm(Button)

@@ -1,0 +1,48 @@
+<CommentBox>:
+    orientation: 'vertical'
+    adaptive_height: True
+    md_bg_color: hex('#FFFFFF')
+    line_color: hex('#BDBDBD')
+    padding:[dp(0),dp(10)]
+    MDBoxLayout:
+        orientation: 'horizontal'
+        adaptive_height: True
+        AnchorLayout:
+            size_hint_x: None
+            anchor_y:'center'
+            width: '48dp'
+            MDIcon:
+                icon: root.avartar
+                font_size: '30dp'
+                size_hint_x:None
+                width:self.texture_size[0]
+        MDLabel:
+            font_name:angsanaNew
+            font_size: '30dp'
+            text: root.text
+            size_hint_y:None
+            height: self.texture_size[1]
+    MDAnchorLayout:
+        anchor_x:"right"
+        anchor_y:"center"
+        size_hint_y:None
+        height: dp(40)
+        MDBoxLayout:
+            orientation:'horizontal'
+            adaptive_size:True
+            spacing:dp(2)
+            MDIconButton:
+                id:heart_plus
+                iconList:['heart-plus-outline','heart-plus']
+                icon:self.iconList[0]
+                icon_size: '20dp'
+            MDLabel:
+                id:score_text
+                text:str(0)
+                size_hint_x:None
+                width:self.texture_size[0]
+            MDIconButton:
+                id:heart_remove
+                iconList:['heart-remove-outline','heart-remove']
+                icon:self.iconList[0]
+                icon_size: '20dp'

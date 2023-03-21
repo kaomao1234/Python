@@ -1,0 +1,27 @@
+<SalesFlatButton>:
+    MDFlatButton:
+        pos_hint:{'center_x':0.5,'center_y':0.5}
+        size_hint:1, 1
+        on_press:if root.btn_click != None :root.btn_click(*args)
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            canvas.before:
+                Color:
+                    rgba: hex('#E0ECF8')
+            
+                Rectangle:
+                    size: self.size[0], self.size[1]
+                    pos: self.pos
+            text:root.cheapen_text
+            font_size:14
+            theme_text_color:'Custom'
+            text_color:blue
+            size_hint: 0.25, 0.2
+            halign:'center'
+        Image:
+            source:root.img_source
+        MDLabel:
+            text:root.product_name
+            halign:'center'
+            font_size:18
