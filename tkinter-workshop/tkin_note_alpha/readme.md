@@ -7,7 +7,7 @@ To install the application, you can clone this repository or download the source
 You can install Tkinter using the following command:
 
 ```py
-pip install tk
+python -m pip install ttkbootstrap
 ```
 # Usage
 To run the application, navigate to the root directory of the project and run the following command:
