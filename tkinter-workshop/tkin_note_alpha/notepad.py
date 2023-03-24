@@ -1,6 +1,16 @@
 from ttkbootstrap import *
 from ttkbootstrap.constants import *
-from tkinter import Tk
-class Notepad(Tk):
-    def __init__(self, screenName: str | None = None, baseName: str | None = None, className: str = "Tk", useTk: bool = True, sync: bool = False, use: str | None = None) -> None:
-        super().__init__(screenName, baseName, className, useTk, sync, use)
+from ui.main_window import MainWindow
+
+
+
+class Notepad(Window):
+    def __init__(self, title="NoteMate", themename="darkly", iconphoto='', size=None, position=None, minsize=None, maxsize=None, resizable=None, hdpi=True, scaling=None, transient=None, overrideredirect=False, alpha=1):
+        super().__init__(title, themename, iconphoto, size, position, minsize, maxsize, resizable, hdpi, scaling, transient, overrideredirect, alpha)
+        MainWindow(self).pack(fill=BOTH,expand=1)
+        
+        
+
+
+if __name__ == "__main__":
+    Notepad().mainloop()
