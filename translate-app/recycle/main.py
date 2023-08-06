@@ -1,84 +1,54 @@
-# Based on this file:
-#   https://github.com/pallets/werkzeug/blob/master/werkzeug/_reloader.py
+from kivy.lang import Builder
+from kivymd.app import MDApp
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.widget import Widget
+from kivy.graphics import Color, Line
 
+KV = '''
+BoxLayout:
+    orientation: 'vertical'
 
-import time
-import os
-import sys
-import subprocess
-import view
-PY2 = sys.version_info[0] == 2
+    MDRaisedButton:
+        text: "Clear Canvas"
+        on_release: app.clear_canvas()
 
+    MyCanvas:
+        id: canvas
+'''
 
-class Reloader(object):
+class MyCanvas(Widget):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.start_pos = None
+        self.rect_outline = None
 
-    RELOADING_CODE = 3
+    def on_touch_down(self, touch):
+        print(touch)
+        if self.collide_point(*touch.pos):
+            self.start_pos = touch.pos
 
-    def start_process(self):
-        """Spawn a new Python interpreter with the same arguments as this one,
-        but running the reloader thread.
-        """
-        while True:
-            print("starting Tkinter application...")
+    def on_touch_move(self, touch):
+        if self.start_pos:
+            width = touch.pos[0] - self.start_pos[0]
+            height = touch.pos[1] - self.start_pos[1]
+            self.clear_canvas()
+            with self.canvas:
+                Color(1, 0, 0, 1)  # Red color
+                self.rect_outline = Line(rectangle=(self.start_pos[0], self.start_pos[1], width, height), width=1.5)
 
-            args = [sys.executable] + sys.argv
-            env = os.environ.copy()
-            env['TKINTER_MAIN'] = 'true'
+    def on_touch_up(self, touch):
+        self.start_pos = None
 
-            # a weird bug on windows. sometimes unicode strings end up in the
-            # environment and subprocess.call does not like this, encode them
-            # to latin1 and continue.
-            if os.name == 'nt' and PY2:
-                for key, value in env.iteritems():
-                    if isinstance(value, unicode):
-                        env[key] = value.encode('iso-8859-1')
+    def clear_canvas(self):
+        self.canvas.clear()
 
-            exit_code = subprocess.call(args, env=env,
-                                        close_fds=False)
-            if exit_code != self.RELOADING_CODE:
-                return exit_code
+class MyApp(MDApp):
+    def build(self):
+        return Builder.load_string(KV)
 
-    def trigger_reload(self):
-        self.log_reload()
-        sys.exit(self.RELOADING_CODE)
+    def clear_canvas(self):
+        canvas = self.root.ids.canvas
+        canvas.clear_canvas()
 
-    def log_reload(self):
-        print("reloading...")
-
-
-def run_with_reloader(root, *hotkeys):
-    """Run the given application in an independent python interpreter."""
-    import signal
-    signal.signal(signal.SIGTERM, lambda *args: sys.exit(0))
-    reloader = Reloader()
-    start_time: float = time.time()
-    try:
-        if os.environ.get('TKINTER_MAIN') == 'true':
-
-            for hotkey in hotkeys:
-                root.bind_all(hotkey, lambda event: reloader.trigger_reload())
-
-            if os.name == 'nt':
-                root.wm_state("iconic")
-                root.wm_state("zoomed")
-
-            end_time: float = time.time()
-            print("reload time: ",format(end_time-start_time,".4f"))
-            root.mainloop()
-        else:
-            sys.exit(reloader.start_process())
-
-    except KeyboardInterrupt:
-        pass
-
-
-if __name__ == "__main__":
-    from customtkinter import CTk
-
-    class App(CTk):
-        def __init__(self):
-            CTk.__init__(self)
-            self.title("Ctrl-R for reload")
-            view.View(self).pack(fill="both", expand=True)
-
-    run_with_reloader(App(), "<Control-R>", "<Control-r>")
+if __name__ == '__main__':
+    MyApp().run()

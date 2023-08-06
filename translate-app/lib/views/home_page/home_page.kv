@@ -1,0 +1,21 @@
+<HomePage>:
+    md_bg_color:[0,0,0,0]
+
+    MDBoxLayout:
+        size_hint: 1, 1
+        orientation: 'vertical'
+        padding_x:"8dp"
+        padding_y:"8dp"
+        MDWidget:
+            id:widget_canvas
+            on_touch_down:root.canvas_on_touch_down(*args)
+            on_touch_up:root.canvas_on_touch_up(*args)
+            on_touch_move:root.canvas_on_touch_move(*args)
+
+        MDTextButton:
+            text:"Draw Outine Box"
+            size_hint_x: 1
+            on_press:root.draw_outline_box()
+        MDRectangleFlatIconButton:
+            text:"clear box"
+            on_press:widget_canvas.canvas.clear()
