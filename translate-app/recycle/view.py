@@ -5,7 +5,7 @@ from PIL import Image
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 # Define the coordinates of the rectangle you want to capture
-x, y, width, height = 100, 100, 300, 200
+x, y, width, height = 400, 100, 300, 200
 
 # Capture the screen area
 screenshot = pyautogui.screenshot(region=(x, y, width, height))
