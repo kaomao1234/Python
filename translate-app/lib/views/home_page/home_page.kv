@@ -1,3 +1,4 @@
+#:import toast kivymd.toast.toast
 <HomePage>:
     md_bg_color:[0,0,0,0]
 
@@ -6,16 +7,33 @@
         orientation: 'vertical'
         padding_x:"8dp"
         padding_y:"8dp"
+        MDBoxLayout:
+            adaptive_height:True
+            size_hint_x:1
+            orientation:"horizontal"
+            MDFlatButton:
+                text:"New"
+                on_press:root.on_capture()
+            MDDropDownItem:
+                id:mode_button
+                text:"Mode"
+                on_press:root.menu.open()
+            MDFlatButton:
+                text:"Delay"
+            MDFlatButton:
+                text:"Cancel"
+            MDFlatButton:
+                text:"Options"
         MDWidget:
             id:widget_canvas
             on_touch_down:root.canvas_on_touch_down(*args)
             on_touch_up:root.canvas_on_touch_up(*args)
             on_touch_move:root.canvas_on_touch_move(*args)
-
-        MDTextButton:
-            text:"Draw Outine Box"
-            size_hint_x: 1
-            on_press:root.draw_outline_box()
-        MDRectangleFlatIconButton:
-            text:"clear box"
-            on_press:widget_canvas.canvas.clear()
+#
+#        MDTextButton:
+#            text:"Draw Outine Box"
+#            size_hint_x: 1
+#            on_press:root.draw_outline_box()
+#        MDRectangleFlatIconButton:
+#            text:"clear box"
+#            on_press:widget_canvas.canvas.clear()
