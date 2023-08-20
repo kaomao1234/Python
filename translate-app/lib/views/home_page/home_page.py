@@ -7,8 +7,8 @@ from kivy.graphics import Color, Line
 from kivy.input.motionevent import MotionEvent
 from kivy.core.window import Window
 from kivy.clock import Clock
-from lib.utils.capturingScreenshot import capturing_screenshot
-from ... import utils
+# from lib.utils.capturingScreenshot import capturing_screenshot
+# from ... import utils
 
 
 class HomePage(MDScreen):

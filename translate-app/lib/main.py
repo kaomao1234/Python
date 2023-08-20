@@ -28,6 +28,7 @@ class Test(MDApp, App):
     DEBUG = 1
     KV_FILES = kv_files
 
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.base_view = None
