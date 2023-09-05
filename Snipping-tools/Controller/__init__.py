@@ -1,2 +1,0 @@
-from Controller.home_screen import HomeScreenController
-from Controller.main_screen import MainScreenController
