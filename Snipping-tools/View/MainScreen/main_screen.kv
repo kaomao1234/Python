@@ -1,0 +1,65 @@
+#:import pprint pprint.pprint
+#:import Window kivy.core.window.Window
+#:import Config kivy.config.Config
+<MainScreenView>:
+    image_full_screen:image_full_screen
+    image_rectangle:image_rectangle
+    mode_button:mode_button
+    canvas_rect:canvas_rect
+    screen_mode_switcher:screen_mode_switcher
+    MDBoxLayout:
+        id:scaffold
+        orientation:"vertical"
+        MDBoxLayout:
+            id:app_bar
+            adaptive_height:True
+            orientation:"horizontal"
+            MDFlatButton:
+                text:"New"
+                on_press:root.on_new_click()
+            MDDropDownItem:
+                id:mode_button
+                text:"Mode"
+                on_press:root.menu.open()
+            MDFlatButton:
+                text:"Save"
+            MDFlatButton:
+                text:"Cancel"
+                on_press:root.on_cancel_click()
+            MDFlatButton:
+                text:"Options"
+        MDWidget:
+            id:body
+            size_hint:1,1
+            MDScreenManager:
+                size_hint:None,None
+                size:body.size
+                id:screen_mode_switcher
+                MDScreen:
+                    name:"free_form_mode"
+                MDScreen:
+                    name:"rectangle_mode"
+                    MDRelativeLayout:
+                        Image:
+                            id:image_rectangle
+                            size_hint:None,None
+                            size:self.parent.size
+                            fit_mode:"contain"
+                        MDWidget:
+                            id:canvas_rect
+                            size:image_rectangle.size
+                            on_touch_down:root.on_rect_touch_down(*args)
+                            on_touch_move:root.on_rect_touch_move(*args)
+                            on_touch_up:root.on_rect_touch_up(*args)
+
+                MDScreen:
+                    name:"window_mode"
+                MDScreen:
+                    name:"full_screen_mode"
+                    Image:
+                        id:image_full_screen
+                        size_hint:None,None
+                        size:self.parent.size
+                        fit_mode:"fill"
+
+

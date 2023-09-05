@@ -1,0 +1,94 @@
+<MainScreenView>:
+    build_btn:build_btn
+    MDBoxLayout:
+        orientation:"vertical"
+        size_hint:1,1
+        MDTopAppBar:
+            title: "Kivy Project Creator"
+            elevation: 4
+            title_align:"center"
+            md_bg_color:"orange"
+            shadow_color: "brown"
+        MDAnchorLayout:
+            anchor_x:"center"
+            anchor_y:"center"
+            id:body
+            size_hint:1,1
+            MDBoxLayout:
+                size_hint:1,1
+                orientation:"vertical"
+                padding:[dp(8),0,dp(8),0]
+                MDTextField:
+                    size_hint_x:1
+                    text:"MVC"
+                    readonly:True
+                    halign:"center"
+                    hint_text:"pattern"
+                MDBoxLayout:
+                    adaptive_height:True
+                    MDTextField:
+                        id:path_text
+                        size_hint_x:1
+                        hint_text:"directory"
+                        helper_text: "Enter directory"
+                        required:True
+                        readonly:True
+                        text:root.directory
+                        on_text:
+                            self.error = True if(len(self.text) == 0) else False
+                            root.directory = self.text
+                    MDIconButton:
+                        icon:"file-cabinet"
+                        on_press:root.on_browse()
+                MDTextField:
+                    size_hint_x:1
+                    hint_text:"project name"
+                    helper_text: "Enter name"
+                    required:True
+                    text:root.project_name
+                    on_text:
+                        self.error = True if(len(self.text) == 0) else False
+                        root.project_name = self.text
+                MDBoxLayout:
+                    adaptive_height:True
+                    padding:[dp(20),dp(10),dp(20),dp(10)]
+                    MDSeparator:
+                        height:0
+                    MDLabel:
+                        adaptive_width:True
+                        text:"use hotreload"
+                    MDCheckbox:
+                        size_hint: None, None
+                        size: "48dp", "48dp"
+                        on_active:
+                            root.optional['--use_hotreload'] = self.active
+                    MDSeparator:
+                        height:0
+                AnchorLayout:
+                    size_hint_y:None
+                    anchor_x:"center"
+                    height:build_btn.height
+                    MDRoundFlatButton:
+                        id:build_btn
+                        text:"Build"
+                        size_hint:None,None
+                        -width:root.width*0.8
+                        on_press:root.on_build(*args)
+                MDBoxLayout:
+                    orientation:"horizontal"
+                    MDLabel:
+                        text:"status"
+                        color:"red"
+                        size_hint_x:0.3
+                        valign:"center"
+                        halign:"right"
+                    ScrollView:
+                        MDLabel:
+                            text:root.output_message
+                            color:"green"
+                            size_hint: 1, None     # <<<<<<<<<<
+                            height: self.texture_size[1]   # <<<<<<<<<<
+                            valign:"center"
+                            halign:"left"
+                            multiline:True
+
