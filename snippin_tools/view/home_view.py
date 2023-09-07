@@ -1,4 +1,4 @@
-from widget.view.baseview import BaseView
+from view.baseview import BaseView
 import flet as ft
 
 

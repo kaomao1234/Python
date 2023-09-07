@@ -1,6 +1,6 @@
 import flet as ft
 
-from widget.view import MainView, HomeView, BaseView
+from view import MainView, HomeView, BaseView
 
 
 class App:
