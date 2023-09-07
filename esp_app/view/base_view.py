@@ -30,6 +30,7 @@ class BaseView:
         self.root.on_resize = self.on_resize
         self.root.on_window_event = self.on_window_event
         self.sized = Sized(root.width, root.height)
+        self.root.views.append(self.get_view())
         if route not in self.pages.keys():
             BaseView.pages[route] = self.get_view()
 
