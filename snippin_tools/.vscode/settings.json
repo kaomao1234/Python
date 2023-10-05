@@ -1,0 +1,13 @@
+{
+    "python.analysis.fixAll": [
+
+    ],
+    "python.autoComplete.extraPaths": [
+
+    ],
+    "python.terminal.launchArgs": [
+
+    ],
+    "terminal.integrated.shellIntegration.enabled": true,
+    "python.analysis.extraPaths": []
+}

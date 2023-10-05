@@ -34,7 +34,8 @@ class MainScreenView(BaseScreenView):
         enable_optional = [f"{k} yes" for k, v in self.optional.items() if v]
         if len(self.project_name) > 0 and len(self.directory) > 0:
             args[0].disabled = True
-            Clock.schedule_once(lambda dt: self.build_project(enable_optional), 1)
+            Clock.schedule_once(
+                lambda dt: self.build_project(enable_optional), 1)
 
     def build_project(self, enable_optional):
         self.output_message = execute_command_project("MVC", self.directory, self.project_name,
