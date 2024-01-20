@@ -44,3 +44,4 @@ class MainScreenView(BaseScreenView):
         self.build_btn.disabled = False
         self.project_name = ""
         self.directory = ""
+
